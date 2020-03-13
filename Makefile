@@ -17,8 +17,8 @@ reset-symlinks: create-directories
 install-symlinks: reset-symlinks
 	# @ln -sf ${MAKEFILE_DIR}/shell/config.sh ~/.bashrc
 	@ln -sf ${MAKEFILE_DIR}/git/gitconfig.conf ~/.gitconfig
-	# @ln -sf ${MAKEFILE_DIR}/tmux ~/.tmux
-	# @ln -sf ${MAKEFILE_DIR}/tmux/tmux.conf ~/.tmux.conf
+	@ln -sf ${MAKEFILE_DIR}/tmux ~/.tmux
+	@ln -sf ${MAKEFILE_DIR}/tmux/tmux.conf ~/.tmux.conf
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.config/nvim
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.vim
 	@ln -sf ${MAKEFILE_DIR}/vim/init.vim ~/.vimrc

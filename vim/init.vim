@@ -1,15 +1,11 @@
-call plug#begin()
-Plug 'itchyny/lightline.vim'                " bottom status bar
-Plug 'rhysd/vim-clang-format'               " clang format
-Plug 'scrooloose/nerdtree'                  " NERDTree
-Plug 'Xuyuanp/nerdtree-git-plugin'	    " NERDTree git plugin
-Plug 'justmao945/vim-clang'	   	    " nvim clang automation
+" Neovim configuration
 
-" Clang-Format
-" let g:clang_format#command = '~/.local/bin/clang-format'
-" let g:clang_format#detect_style_file = 1
-let g:clang_format#auto_format = 1
+" Get current directory path
+" Credits go to StackOverflow:
+" http://stackoverflow.com/questions/4976776/how-to-get-path-to-the-current-vimscript-being-executed
+let s:dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let s:config = s:dir.'/config.vim'
 
-" NERDTree nmap
-nmap <C-n> :NERDTreeToggle<CR>
-call plug#end()
+
+" Then just source config.vim
+exe 'source' s:config

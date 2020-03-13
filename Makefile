@@ -20,6 +20,7 @@ install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/tmux ~/.tmux
 	@ln -sf ${MAKEFILE_DIR}/tmux/tmux.conf ~/.tmux.conf
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.config/nvim
+	@ln -sf ${MAKEFILE_DIR}/vim/init.vim ~/.config/nvim
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.vim
 	@ln -sf ${MAKEFILE_DIR}/vim/init.vim ~/.vimrc
 #---------------------------------------------------------------------------

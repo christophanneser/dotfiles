@@ -13,3 +13,10 @@ let g:clang_format#auto_format = 1
 " NERDTree nmap
 nmap <C-n> :NERDTreeToggle<CR>
 call plug#end()
+
+
+" Window navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>

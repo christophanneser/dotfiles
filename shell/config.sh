@@ -4,7 +4,7 @@ include () {
     [[ -f "$1" ]] && source "$1"
 }
 
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES=$HOME/Documents/dotfiles
 export SHELLCONF=$DOTFILES/shell
 
 export TERM=xterm-256color
@@ -32,3 +32,4 @@ export PATH=$NPM_PACKAGES/bin:$PATH
 include $SHELLCONF/aliases.sh
 include $SHELLCONF/functions.sh
 
+source $SHELLCONF/colors/gruvbox_256palette.sh

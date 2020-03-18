@@ -41,7 +41,8 @@ reset-symlinks: create-directories
 	@sh -c "[ ! -L ~/.vimrc ] || rm ~/.vimrc;"
 #---------------------------------------------------------------------------
 install-symlinks: reset-symlinks
-	@ln -sf ${MAKEFILE_DIR}/shell/config.sh ~/.bashrc
+	#@ln -sf ${MAKEFILE_DIR}/shell/config.sh ~/.bashrc
+	@cat    ${MAKEFILE_DIR}/shell/config.sh >> ~/.zshrc
 	@ln -sf ${MAKEFILE_DIR}/git/gitconfig.conf ~/.gitconfig
 	@ln -sf ${MAKEFILE_DIR}/tmux ~/.tmux
 	@ln -sf ${MAKEFILE_DIR}/tmux/tmux.conf ~/.tmux.conf
@@ -55,6 +56,6 @@ repair: reset-symlinks
 	@sudo update-alternatives --install /usr/bin/vim vim /usr/bin/vim.basic 200
 	@sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim.basic 200
 #---------------------------------------------------------------------------
-install: install-ls-py install-ls-cc install-clang-tools install-symlinks
+install: install-symlinks
 #---------------------------------------------------------------------------
 

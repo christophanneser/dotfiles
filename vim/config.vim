@@ -32,6 +32,7 @@ let g:LanguageClient_serverCommands = {
 
 let g:deoplete#enable_at_startup = 1
 
+" REMAPS: refer to https://stackoverflow.com/a/3776182
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
@@ -59,6 +60,9 @@ nnoremap <C-H> <C-W><C-H>
 " Code folding (https://vim.fandom.com/wiki/Folding)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+
+" Delete last word as used in other editors
+:imap <C-BS> <C-W>
 
 " Vim settings
 set ignorecase             " case insensitive searching

@@ -39,7 +39,7 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Clang-Format
-let g:clang_format#auto_format = 1
+let g:clang_format#auto_format = 0
 let g:clang_format#detect_style_file = 1
 
 call plug#end()
@@ -51,10 +51,14 @@ nmap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-m> :NERDTreeFind<CR>
 
 " Window navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+" Code folding (https://vim.fandom.com/wiki/Folding)
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 " Vim settings
 set ignorecase             " case insensitive searching
@@ -70,3 +74,12 @@ set shiftround             " round indent to a multiple of 'shiftwidth'
 set number                 " show line numbers
 set nocompatible           " not compatible with vi
 set colorcolumn=121        " column delimiter
+set foldlevel=99           " opens all folds up to the given level when opening file
+set foldmethod=syntax      " use for cpp and c files, python uses indent
+
+" Remember folds when closing files
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END

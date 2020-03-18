@@ -51,10 +51,10 @@ nmap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-m> :NERDTreeFind<CR>
 
 " Window navigation
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Code folding (https://vim.fandom.com/wiki/Folding)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>

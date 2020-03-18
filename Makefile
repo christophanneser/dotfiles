@@ -13,6 +13,13 @@ create-directories:
 	@mkdir -p ~/.config
 	@mkdir -p ~/.local
 #---------------------------------------------------------------------------
+install-zsh:
+	@sudo apt-get install zsh
+#---------------------------------------------------------------------------
+install-oh-my-zsh:
+	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	@sudo apt-get install fonts-powerline
+#---------------------------------------------------------------------------
 install-ls-cc:
 	rm -rf $(CCLS_REPO_DIR) $(CCLS_BUILD_DIR)
 	git clone --recursive https://github.com/MaskRay/ccls $(CCLS_REPO_DIR)
@@ -41,8 +48,8 @@ reset-symlinks: create-directories
 	@sh -c "[ ! -L ~/.vimrc ] || rm ~/.vimrc;"
 #---------------------------------------------------------------------------
 install-symlinks: reset-symlinks
-	#@ln -sf ${MAKEFILE_DIR}/shell/config.sh ~/.bashrc
-	@cat    ${MAKEFILE_DIR}/shell/config.sh >> ~/.zshrc
+	@ln -sf ${MAKEFILE_DIR}/shell/bashrc ~/.bashrc
+	@ln -sf ${MAKEFILE_DIR}/shell/zshrc ~/.zshrc
 	@ln -sf ${MAKEFILE_DIR}/git/gitconfig.conf ~/.gitconfig
 	@ln -sf ${MAKEFILE_DIR}/tmux ~/.tmux
 	@ln -sf ${MAKEFILE_DIR}/tmux/tmux.conf ~/.tmux.conf

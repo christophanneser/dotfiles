@@ -79,6 +79,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Window splits
+nnoremap <leader>ws  :split<CR>
+nnoremap <leader>w+ :exe "resize " . (winheight(0) * 12/10)<CR>
+nnoremap <leader>w- :exe "resize " . (winheight(0) * 8/10)<CR>
+nnoremap <leader>wv  :vsplit<CR>
+nnoremap <leader>w< :exe "vertical resize " . (winwidth(0) * 12/10)<CR>
+nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
+
 " Code folding (https://vim.fandom.com/wiki/Folding)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf

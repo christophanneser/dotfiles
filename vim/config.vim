@@ -21,8 +21,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'itchyny/lightline.vim'                " bottom status bar
 Plug 'rhysd/vim-clang-format'               " clang format
 Plug 'scrooloose/nerdtree'                  " NERDTree
-Plug 'Xuyuanp/nerdtree-git-plugin'	    " NERDTree git plugin
-Plug 'justmao945/vim-clang'	   	    " nvim clang automation
+Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
+Plug 'justmao945/vim-clang'	   	            " nvim clang automation
+Plug 'preservim/nerdcommenter'              " easy multiline commenting
 
 call plug#end()
 
@@ -80,6 +81,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "Window splits
+nnoremap <leader>w <C-W>
 nnoremap <leader>ws  :split<CR>
 nnoremap <leader>w+ :exe "resize " . (winheight(0) * 12/10)<CR>
 nnoremap <leader>w- :exe "resize " . (winheight(0) * 8/10)<CR>
@@ -117,3 +119,6 @@ augroup remember_folds
   autocmd BufWinLeave * mkview
   autocmd BufWinEnter * silent! loadview
 augroup END
+
+filetype plugin on
+

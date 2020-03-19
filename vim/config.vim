@@ -111,6 +111,9 @@ set colorcolumn=121        " column delimiter
 set foldlevel=99           " opens all folds up to the given level when opening file
 set foldmethod=syntax      " use for cpp and c files, python uses indent
 
+" set colorscheme here
+colorscheme gruvbox
+
 " Remember folds when closing files
 augroup remember_folds
   autocmd!

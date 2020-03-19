@@ -1,3 +1,7 @@
 !.keep
 !.gitkeep
 plugged
+*.aux
+*.log    
+*.out 
+tmux/tmux

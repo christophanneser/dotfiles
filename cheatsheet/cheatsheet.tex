@@ -79,7 +79,7 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 \renewcommand{\dots}{\ \dotfill{}\ } % Fills in the right amount of dots
 
-\newcommand{\command}[3]{\textcolor{#1}{#2}~\dotfill{}~#3\\} % Custom command for adding a shorcut
+\newcommand{\command}[3]{\textcolor{#1}{\texttt{#2}}~\dotfill{}~#3\\} % Custom command for adding a shorcut
 
 \newcommand{\sectiontitle}[1]{\paragraph{#1} \ \\} % Custom command for subsection titles
 \newcommand{\subsectiontitle}[1]{\textbf{#1} \ \\} % Custom command for susubbsection titles
@@ -122,7 +122,10 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 	\center{\textbf{Lanugage Client Neovim}}\\
 	\texttt{\textcolor{vimblue}{compile\_commands.json}} in project root!\\
-	\command{vimblue}{leader-ld}{definition}
+    \command{vimblue}{\textbf{leader-lj}}{STOP}
+    \command{vimblue}{\textbf{leader-ll}}{START}
+	
+    \command{vimblue}{leader-ld}{definition}
 	\command{vimblue}{leader-lr}{rename}
 	\command{vimblue}{leader-lf}{formatting}
 	\command{vimblue}{leader-lt}{type def}

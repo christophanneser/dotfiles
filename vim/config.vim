@@ -57,6 +57,10 @@ nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
 nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
+" reload language server after compiling
+nnoremap <leader>lj :LanguageClientStop <CR>
+nnoremap <leader>ll :LanguageClientStart <CR>
+
 let g:deoplete#enable_at_startup = 1
 
 " REMAPS: refer to https://stackoverflow.com/a/3776182
@@ -72,7 +76,6 @@ let g:clang_format#detect_style_file = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40 
 nmap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-m> :NERDTreeFind<CR>
 
 " Window navigation
 nnoremap <C-J> <C-W><C-J>
@@ -88,6 +91,11 @@ nnoremap <leader>w- :exe "resize " . (winheight(0) * 8/10)<CR>
 nnoremap <leader>wv  :vsplit<CR>
 nnoremap <leader>w< :exe "vertical resize " . (winwidth(0) * 12/10)<CR>
 nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
+
+" Deoplete suggestion navigation
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<C-l>"
 
 " Code folding (https://vim.fandom.com/wiki/Folding)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -112,7 +120,9 @@ set nocompatible           " not compatible with vi
 set colorcolumn=121        " column delimiter
 set foldlevel=99           " opens all folds up to the given level when opening file
 set foldmethod=syntax      " use for cpp and c files, python uses indent
-
+set list!                   " show all characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set guifont=Monaco:h20
 " set colorscheme here
 colorscheme gruvbox
 

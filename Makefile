@@ -20,6 +20,13 @@ install-oh-my-zsh:
 	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	@sudo apt-get install fonts-powerline
 #---------------------------------------------------------------------------
+install-lldebugger:
+	# needs python2 neovim
+	@sudo apt-get install python-pip
+	@pip2 install pynvim
+	@sudo apt-get install lldb-8
+	@sudo ln -s lldb-server-8 lldb-server-8.0.0
+#---------------------------------------------------------------------------
 install-ls-cc:
 	rm -rf $(CCLS_REPO_DIR) $(CCLS_BUILD_DIR)
 	git clone --recursive https://github.com/MaskRay/ccls $(CCLS_REPO_DIR)

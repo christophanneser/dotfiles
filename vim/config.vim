@@ -24,9 +24,21 @@ Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
-Plug 'vim-scripts/Conque-GDB'               " integrated debugger
-
+" for the following plugin, need following: https://github.com/critiqjo/lldb.nvim/#prerequisites
+Plug 'critiqjo/lldb.nvim'                   " another debugger too
 call plug#end()
+
+" LLDB Debugger Settings
+nmap <F4> :LLsession new<CR>
+nnoremap <F5> :LLmode debug<CR>
+nnoremap <F5><F5> :LLmode code<CR>
+
+nmap <M-b> <Plug>LLBreakSwitch
+vmap <F2> <Plug>LLStdInSelected
+nnoremap <F7> :LL step<CR>
+nnoremap <F8> :LL continue<CR>
+"nnoremap <S-F8> :LL process interrupt<CR>
+nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
 
 " Cursor History
 "   - go to previous position: <C-O>
@@ -60,12 +72,12 @@ nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
 
 " reload language server after compiling
 nnoremap <leader>lj :LanguageClientStop <CR>
-nnoremap <leader>ll :LanguageClientStart <CR>
+nnoremap <leader>lk :LanguageClientStart <CR>
 
 let g:deoplete#enable_at_startup = 1
 
 " REMAPS: refer to https://stackoverflow.com/a/3776182
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Clang-Format
@@ -107,11 +119,11 @@ vnoremap <Space> zf
 :com -nargs=1 Rel :!mkdir release & cd release; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
 
 " Trigger build using cmake
-nmap <F7> :Deb<Space>
-nmap <F8> :Rel<Space>
+nmap <leader>cd :Deb<Space>
+nmap <leader>cr :Rel<Space>
 
 " Create symlink to compile_commands
-nmap <F9> :!ln -s debug/compile_commands.json compile_commands.json
+"nmap <leader>ln :!ln -s debug/compile_commands.json compile_commands.json
 
 " Vim settings
 set ignorecase             " case insensitive searching

@@ -103,8 +103,8 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " New fast compilation commands
-:com -nargs=1 Deb :!cd build; cmake -DCMAKE_BUILD_TYPE=DEBUG ..; make <args>
-:com -nargs=1 Rel :!cd build; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
+:com -nargs=1 Deb :!mkdir debug & cd debug; cmake -DCMAKE_BUILD_TYPE=DEBUG ..; make <args>
+:com -nargs=1 Rel :!mkdir release & cd release; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
 
 " Trigger build using cmake
 nmap <F7> :Deb<Space>

@@ -24,6 +24,7 @@ Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
+Plug 'critiqjo/lldb.nvim'                   " integrated debugger
 
 call plug#end()
 

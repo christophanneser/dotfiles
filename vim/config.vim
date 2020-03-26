@@ -24,7 +24,7 @@ Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
-Plug 'critiqjo/lldb.nvim'                   " integrated debugger
+Plug 'vim-scripts/Conque-GDB'               " integrated debugger
 
 call plug#end()
 
@@ -102,9 +102,13 @@ inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<C-l>"
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-" Delete last word as used in other editors
-:imap <C-BS> <C-W>
+" New fast compilation commands
+:com -nargs=1 Deb :!cd build; cmake -DCMAKE_BUILD_TYPE=DEBUG ..; make <args>
+:com -nargs=1 Rel :!cd build; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
 
+" Trigger build using cmake
+nmap <F7> :Deb<Space>
+nmap <F8> :Rel<Space>
 " Vim settings
 set ignorecase             " case insensitive searching
 set smartcase              " case-sensitive if expresson contains a capital letter

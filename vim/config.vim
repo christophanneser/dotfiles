@@ -109,6 +109,10 @@ vnoremap <Space> zf
 " Trigger build using cmake
 nmap <F7> :Deb<Space>
 nmap <F8> :Rel<Space>
+
+" Create symlink to compile_commands
+nmap <F9> :!ln -s debug/compile_commands.json compile_commands.json
+
 " Vim settings
 set ignorecase             " case insensitive searching
 set smartcase              " case-sensitive if expresson contains a capital letter

@@ -22,10 +22,10 @@ install-oh-my-zsh:
 #---------------------------------------------------------------------------
 install-lldebugger:
 	# needs python2 neovim
-	@sudo apt-get install python-pip
+	@sudo apt-get -y install python-pip
 	@pip2 install pynvim
-	@sudo apt-get install lldb-8
-	@sudo ln -s lldb-server-8 lldb-server-8.0.0
+	@sudo apt-get -y install lldb-8
+	@sudo ln -s /usr/bin/lldb-server-8 /usr/bin/lldb-server-8.0.0
 #---------------------------------------------------------------------------
 install-ls-cc:
 	rm -rf $(CCLS_REPO_DIR) $(CCLS_BUILD_DIR)

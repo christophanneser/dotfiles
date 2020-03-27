@@ -139,14 +139,23 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
     \textbf{CMake $\&$ Make}\\
     \command{vimblue}{<leader>cd}{build in \texttt{debug} mode}
     \command{vimblue}{<leader>cr}{build in \texttt{release} mode}
-
-    \textbf{LLDB-Debugger}\\
-    \command{vimblue}{:h lldb}{show help}
-    \command{vimblue}{<F4>}{start a new debugging session}
-    \command{vimblue}{<F5>/<F5><F5>}{switch to debug/code mode}
+    
+    \textbf{nvim-gdb}\\
+    \command{vimblue}{:h nvimgdb.txt}{show help}
+    \command{vimblue}{<leader>d\{d,l,p,b\}}{start a new debugging session}
     \command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
-    \command{vimblue}{<F8>}{continue}
+    \command{vimblue}{<F10>}{step over statement}
+    \command{vimblue}{<F11>}{step into statement}
+    \command{vimblue}{<F12>}{step out current frame}
     \command{vimblue}{<F9>}{print a variable}
+
+    %\textbf{LLDB-Debugger}\\
+    %\command{vimblue}{:h lldb}{show help}
+    %\command{vimblue}{<F4>}{start a new debugging session}
+    %\command{vimblue}{<F5>/<F5><F5>}{switch to debug/code mode}
+    %\command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
+    %\command{vimblue}{<F8>}{continue}
+    %\command{vimblue}{<F9>}{print a variable}
 \end{commandbox}
 
 \end{minipage} 

@@ -24,21 +24,11 @@ Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
-" for the following plugin, need following: https://github.com/critiqjo/lldb.nvim/#prerequisites
-Plug 'critiqjo/lldb.nvim'                   " another debugger too
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 call plug#end()
 
-" LLDB Debugger Settings
-nmap <F4> :LLsession new<CR>
-nnoremap <F5> :LLmode debug<CR>
-nnoremap <F5><F5> :LLmode code<CR>
-
-nmap <M-b> <Plug>LLBreakSwitch
-vmap <F2> <Plug>LLStdInSelected
-nnoremap <F7> :LL step<CR>
-nnoremap <F8> :LL continue<CR>
-"nnoremap <S-F8> :LL process interrupt<CR>
-nnoremap <F9> :LL print <C-R>=expand('<cword>')<CR>
+"nvim-gdb
+nmap <M-b> :GdbBreakpointToggle<CR>
 
 " Cursor History
 "   - go to previous position: <C-O>

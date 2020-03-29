@@ -25,18 +25,20 @@ Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 call plug#end()
-
-"nvim-gdb
-nmap <M-b> :GdbBreakpointToggle<CR>
-
-" Cursor History
-"   - go to previous position: <C-O>
-"   - go to next position: <C-I>
 
 " Alternate map leader
 let mapleader = ','
 let g:mapleader = ','
+
+"nvim-gdb
+nmap <M-b> :GdbBreakpointToggle<CR>
+autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
+
+" Cursor History
+"   - go to previous position: <C-O>
+"   - go to next position: <C-I>
 
 " Language server config
 " Important: .compile_commands.json must be in root directory
@@ -73,6 +75,8 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " Clang-Format
 let g:clang_format#auto_format = 0
 let g:clang_format#detect_style_file = 1
+" vim-clang overrides clang-format command
+let g:clang_enable_format_command = 0
 
 
 " NERDTree nmap
@@ -111,6 +115,18 @@ vnoremap <Space> zf
 " Trigger build using cmake
 nmap <leader>cd :Deb<Space>
 nmap <leader>cr :Rel<Space>
+
+" Commenting Plugin
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 2
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Markdown Plugin
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
 
 " Create symlink to compile_commands
 "nmap <leader>ln :!ln -s debug/compile_commands.json compile_commands.json

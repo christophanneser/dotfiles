@@ -20,6 +20,27 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+prompt_time() {
+   prompt_segment black blue '[%D{%H:%M:%S}]'
+}
+
+TMOUT=1
+
+TRAPALRM() {
+    zle reset-prompt
+}
+
+build_prompt() {
+  prompt_status
+  prompt_time
+  prompt_virtualenv
+  prompt_context
+  prompt_dir
+  prompt_git
+  prompt_end
+}
+
+
 # User configuration
 
 # You may need to manually set your language environment

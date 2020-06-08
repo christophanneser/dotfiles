@@ -28,3 +28,13 @@ function extract() {
 function find-fat-things() {
     du -ahx / | sort -rh | head -100
 }
+
+function pretty_csv {
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+
+function swap()
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}

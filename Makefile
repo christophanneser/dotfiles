@@ -44,6 +44,9 @@ install-ls-cc:
 install-ls-py:
 	pip3 install python-language-server
 #---------------------------------------------------------------------------
+install-ls-tex:
+	cargo install --git https://github.com/latex-lsp/texlab.git
+#---------------------------------------------------------------------------
 install-clang-tools:
 	@sudo apt-get install clang-tools
 #---------------------------------------------------------------------------

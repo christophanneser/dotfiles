@@ -13,19 +13,20 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
+Plug 'zchee/deoplete-jedi'                  " auto-completion for python
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'commit': 'ec4af74',
     \ 'do': 'bash install.sh',
     \ }                                     " languageserver
 Plug 'itchyny/lightline.vim'                " bottom status bar
-Plug 'rhysd/vim-clang-format'               " clang format
+" Plug 'rhysd/vim-clang-format'               " clang format
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 " Alternate map leader
@@ -43,8 +44,9 @@ autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
 " Language server config
 " Important: .compile_commands.json must be in root directory
 let g:LanguageClient_serverCommands = {
-  \ 'python': ['~/.local/bin/pyls', 'v'],
+  \ 'python': ['~/.local/bin/pyls'],
   \ 'cpp': ['~/.local/bin/ccls'], 
+  \ 'tex': ['~/.cargo/bin/texlab'], 
   \ }
 
 " Lanugage client shortcuts
@@ -67,17 +69,21 @@ nnoremap <leader>lj :LanguageClientStop <CR>
 nnoremap <leader>lk :LanguageClientStart <CR>
 
 let g:deoplete#enable_at_startup = 1
+" let g:deoplete#custom#source('LanguageClient', 'sorters', [])
 
 " REMAPS: refer to https://stackoverflow.com/a/3776182
 "nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Clang-Format
-let g:clang_format#auto_format = 0
+let g:clang_format#auto_format = 1
 let g:clang_format#detect_style_file = 1
-" vim-clang overrides clang-format command
+let g:clang_format#auto_format_on_insert_leave = 0
+" " vim-clang overrides clang-format command
 let g:clang_enable_format_command = 0
 
+" neoformat
+let g:neoformat_enabled_python = ['autopep8']
 
 " NERDTree nmap
 let g:NERDTreeShowHidden = 1
@@ -158,6 +164,12 @@ augroup remember_folds
   autocmd!
   autocmd BufWinLeave * mkview
   autocmd BufWinEnter * silent! loadview
+augroup END
+
+" highlight todos
+augroup HiglightTODO
+    autocmd!
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', 'todo' -1)
 augroup END
 
 filetype plugin on

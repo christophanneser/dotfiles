@@ -9,6 +9,9 @@ CCLS_BUILD_DIR := ~/.ccls/build
 CCLS_INSTALL_PREFIX := ~/.local
 LLVM_PREFIX_PATH := /usr/lib/llvm-9/lib/cmake
 #---------------------------------------------------------------------------
+key-switches:
+	gsettings set org.gnome.desktop.input-sources xkb-options "['lv3:lalt_switch','lv3:ralt-alt', 'caps:swapescape']"
+#---------------------------------------------------------------------------
 create-directories:
 	@mkdir -p ~/.config
 	@mkdir -p ~/.local

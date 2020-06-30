@@ -19,6 +19,7 @@ alias du='du -h -c'
 #---------------------------------------------------------------------------
 alias gs='git status'
 alias gp='git push'
+alias gpr='git pull -r'
 alias gpull='git pull'
 alias gcm='git commit --message'
 alias gcam='git commit --all --message'

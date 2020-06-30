@@ -14,6 +14,7 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'zchee/deoplete-jedi'                  " auto-completion for python
+Plug 'lervag/vimtex'                        " auto-completion for vimtex
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'commit': 'ec4af74',
     \ 'do': 'bash install.sh',
@@ -84,6 +85,9 @@ let g:clang_enable_format_command = 0
 
 " neoformat
 let g:neoformat_enabled_python = ['autopep8']
+
+" vimtex
+let g:vimtex_complete_enabled = 1
 
 " NERDTree nmap
 let g:NERDTreeShowHidden = 1

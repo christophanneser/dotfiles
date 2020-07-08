@@ -14,7 +14,6 @@ import sys
 
 DEFAULT_CONFIG_PATH = ".listener-config"
 
-
 class FileChecker():
     def __init__(self, config):
         self.files = config.files
@@ -26,7 +25,20 @@ class FileChecker():
                 print("Error in your regex \"" + regex + "\"")
                 exit(1)
 
+        self.blacklist_patterns = []
+        for regex in config.blacklist:
+            try:
+                self.blacklist_patterns.append(re.compile(regex))
+            except:
+                print("Error in your regex \"" + regex + "\"")
+                exit(1)
+
+
     def check(self, path):
+        for regex in self.blacklist_patterns:
+            if regex.match(path):
+                return False
+
         for regex in self.regex_patterns:
             if regex.match(path):
                 return True
@@ -47,8 +59,12 @@ class Configuration():
 
         self.files = self.config["files"]
         self.regexes = self.config["regexes"]
+        self.blacklist = self.config["blacklist_regexes"]
         self.commands = self.config["commands"]
         self.exit_commands = self.config["exit_commands"]
+        self.extended_commands = self.config["extended_commands"]
+        self.extended_commands_interval = self.config["extended_commands_interval"]
+        self.counter = 0
 
         print("use the following configuration: " + str(self))
 
@@ -61,19 +77,28 @@ class Event(LoggingEventHandler):
         self.config = config
 
     def dispatch(self, event):
-        if not (isinstance(event, FileModifiedEvent) or isinstance(event, FileCreatedEvent)) or not self.file_checker.check(event.src_path):
+        if not (isinstance(event, FileModifiedEvent)) or not self.file_checker.check(event.src_path):
             return
 
-        print(event.src_path)
-        for command in self.config.commands:
-            os.system(command)
+        self.config.counter += 1
+        print(event)
+        if self.config.counter % self.config.extended_commands_interval == 0:
+            for command in self.config.extended_commands:
+                os.system(command)
+        else:
+            for command in self.config.commands:
+                os.system(command)
+
 
 def store_default_config():
     config = {
             "files": [],
-            "regexes": [".*.py"],
+            "regexes": [".*.tex"], # watch on all tex files
             "commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
+            "blacklist_regexes": [".*_tmp.*"], # blacklist those files used for compilation only
             "exit_commands": ["rm _tmp*"],
+            "extended_commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "bibtex _tmp", "pdflatex _tmp", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
+            "extended_commands_interval": 10, # call extended commands after x times normal commands were called
             }
     with open('.listener-config', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)

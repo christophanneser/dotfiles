@@ -3,7 +3,7 @@ NY: reset-symlinks
 MAKEFILE_PATH := $(abspath $(lastword ${MAKEFILE_LIST}))
 MAKEFILE_DIR := $(dir ${MAKEFILE_PATH})
 #---------------------------------------------------------------------------
-CCLS_VERSION := 3865a0944739fff23fdaa53ec287d315f4be6edb
+CCLS_VERSION := 99f0b402a7584f92de12f0af164ad7e0c772fcd2
 CCLS_REPO_DIR := ~/.ccls/repo
 CCLS_BUILD_DIR := ~/.ccls/build
 CCLS_INSTALL_PREFIX := ~/.local
@@ -31,18 +31,7 @@ install-lldebugger:
 	@sudo ln -s /usr/bin/lldb-server-8 /usr/bin/lldb-server-8.0.0
 #---------------------------------------------------------------------------
 install-ls-cc:
-	rm -rf $(CCLS_REPO_DIR) $(CCLS_BUILD_DIR)
-	git clone --recursive https://github.com/MaskRay/ccls $(CCLS_REPO_DIR)
-	cd $(CCLS_REPO_DIR) && git checkout $(CCLS_VERSION)
-	cd $(CCLS_REPO_DIR) && git submodule update --init --recursive
-	mkdir -p $(CCLS_BUILD_DIR) $(CCLS_INSTALL_PREFIX)
-	cd $(CCLS_BUILD_DIR) && cmake \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_PREFIX_PATH=$(LLVM_PREFIX_PATH) \
-		-DCMAKE_INSTALL_PREFIX=$(CCLS_INSTALL_PREFIX) \
-		$(CCLS_REPO_DIR)
-	cd $(CCLS_BUILD_DIR) && make -j 32
-	cd $(CCLS_BUILD_DIR) && make install
+	@sudo apt install ccls # alternatively build from sources: https://github.com/MaskRay/ccls
 #---------------------------------------------------------------------------
 install-ls-py:
 	pip3 install python-language-server
@@ -82,4 +71,3 @@ repair: reset-symlinks
 #---------------------------------------------------------------------------
 install: install-symlinks
 #---------------------------------------------------------------------------
-

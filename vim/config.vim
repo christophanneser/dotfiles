@@ -47,7 +47,7 @@ autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
 " Important: .compile_commands.json must be in root directory
 let g:LanguageClient_serverCommands = {
   \ 'python': ['~/.local/bin/pyls'],
-  \ 'cpp': ['~/.local/bin/ccls'], 
+  \ 'cpp': ['/bin/ccls'],
   \ 'tex': ['~/.cargo/bin/texlab'], 
   \ }
 

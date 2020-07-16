@@ -111,8 +111,8 @@ nnoremap <leader>w< :exe "vertical resize " . (winwidth(0) * 12/10)<CR>
 nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
 
 "Buffer navigation
-map <silent> <F6> :bp!<CR>
-map <silent> <F7> :bn!<CR>
+map <silent> <F5> :bp!<CR>
+map <silent> <F6> :bn!<CR>
 
 " Deoplete suggestion navigation
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"

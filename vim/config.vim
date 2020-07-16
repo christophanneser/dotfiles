@@ -19,8 +19,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'commit': 'ec4af74',
     \ 'do': 'bash install.sh',
     \ }                                     " languageserver
-Plug 'itchyny/lightline.vim'                " bottom status bar
-" Plug 'rhysd/vim-clang-format'               " clang format
+Plug 'vim-airline/vim-airline'
+Plug 'bling/vim-bufferline'
+
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
@@ -109,6 +110,10 @@ nnoremap <leader>wv  :vsplit<CR>
 nnoremap <leader>w< :exe "vertical resize " . (winwidth(0) * 12/10)<CR>
 nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
 
+"Buffer navigation
+map <silent> <F6> :bp!<CR>
+map <silent> <F7> :bn!<CR>
+
 " Deoplete suggestion navigation
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
@@ -137,6 +142,10 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
+
+" Airline buffers at top
+" let g:airline#extensions#bufferline#enabled = 1
+let g:airline_extensions = ['tabline', 'bufferline']
 
 " Create symlink to compile_commands
 "nmap <leader>ln :!ln -s debug/compile_commands.json compile_commands.json

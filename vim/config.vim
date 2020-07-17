@@ -180,10 +180,10 @@ augroup remember_folds
 augroup END
 
 " highlight todos
-augroup HiglightTODO
+augroup HiglightTodo
     autocmd!
-    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxYellowBold', 'TODO\|todo', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', 'FIXME\|fixme', 'fixme' -1)
 augroup END
 
 filetype plugin on
-

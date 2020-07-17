@@ -19,7 +19,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[10pt]{scrartcl} % 11pt font size
+\documentclass[10pt, paper=A3,]{scrartcl} % 11pt font size
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
@@ -37,9 +37,9 @@
 \usepackage[ % This block contains information used to annotate the PDF
 colorlinks=false, 
 pdftitle={Cheatsheet}, 
-pdfauthor={John Smith}, 
-pdfsubject={Compilation of useful shortcuts}, 
-pdfkeywords={Random Software, Cheatsheet}
+pdfauthor={Christoph Anneser}, 
+pdfsubject={my dotfiles shortcuts}, 
+pdfkeywords={Cheatsheet}
 ]{hyperref}
 
 \definecolor{vimblue}{HTML}{0087af}
@@ -90,151 +90,156 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 \begin{picture}(297,210) % Create a container for the page content
 
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION 
-%----------------------------------------------------------------------------------------
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION 
+	%----------------------------------------------------------------------------------------
 
-\put(10,200){ % Position on the page to put the title
-\begin{minipage}[t]{210mm} % The size and alignment of the title
-\section*{Cheatsheet -- Application Shortcuts} % Title
-\end{minipage}
-}
+	\put(10,200){ % Position on the page to put the title
+		\begin{minipage}[t]{210mm} % The size and alignment of the title
+			\section*{Cheatsheet -- Application Shortcuts} % Title
+		\end{minipage}
+	}
 
-%----------------------------------------------------------------------------------------
-%	FIRST COLUMN SPECIFICATION
-%----------------------------------------------------------------------------------------
+	%----------------------------------------------------------------------------------------
+	%	FIRST COLUMN SPECIFICATION
+	%----------------------------------------------------------------------------------------
 
-\put(10,180){ % Divide the page
-\begin{minipage}[t]{85mm} % Create a box to house text
+	\put(10,180){ % Divide the page
+		\begin{minipage}[t]{85mm} % Create a box to house text
 
-%----------------------------------------------------------------------------------------
-%	HEADING ONE
-%----------------------------------------------------------------------------------------
+			%----------------------------------------------------------------------------------------
+			%	HEADING ONE
+			%----------------------------------------------------------------------------------------
 
-\begin{commandbox}[VIM]{thm:vim}{vimblue}{white}
-	\command{vimblue}{leader}{comma ,}
-	\command{vimblue}{C-I/C-O}{next/last cursor pos}
-	\command{vimblue}{C-N}{open NERDTree}
-	\command{vimblue}{C-\{J,K,L,H\}}{window navigation}
-	\command{vimblue}{space}{code folding (for cpp)}
-    \command{vimblue}{[count]\,leader-cc}{commenting line}
-    \command{vimblue}{[count]\,leader-cu}{\textbf{un}commenting line}
-    %\vspace*{-0.7cm}
-	\textbf{Lanugage Client Neovim}\\
-	\texttt{\textcolor{vimblue}{compile\_commands.json}} in project root!
-    \command{vimblue}{\textbf{leader-lj}}{STOP}
-    \command{vimblue}{\textbf{leader-lk}}{START}
-    \command{vimblue}{leader-ld}{definition}
-	\command{vimblue}{leader-lr}{rename}
-	\command{vimblue}{leader-lf}{formatting}
-	\command{vimblue}{leader-lt}{type def}
-	\command{vimblue}{leader-lx}{find references}
-    
-	\textbf{Window Splitting}\\
-	\command{vimblue}{<leader>ws}{horizontal split}
-	\command{vimblue}{<leader>w\{+,-\}}{horizontal resize}
-	\command{vimblue}{<leader>wv}{vertical split}
-	\command{vimblue}{<leader>w\{<,>\}}{vertical resize}
+			\begin{commandbox}[VIM]{thm:vim}{vimblue}{white}
+				\command{vimblue}{leader}{comma ,}
+				\command{vimblue}{C-I/C-O}{next/last cursor pos}
+				\command{vimblue}{C-N}{open NERDTree}
+				\command{vimblue}{C-\{J,K,L,H\}}{window navigation}
+				\command{vimblue}{space}{code folding (for cpp)}
+				\command{vimblue}{[count]\,leader-cc}{commenting line}
+				\command{vimblue}{[count]\,leader-cu}{\textbf{un}commenting line}
+				%\vspace*{-0.7cm}
+				\textbf{Lanugage Client Neovim}\\
+				\texttt{\textcolor{vimblue}{compile\_commands.json}} in project root!
+				\command{vimblue}{\textbf{leader-lj}}{STOP}
+				\command{vimblue}{\textbf{leader-lk}}{START}
+				\command{vimblue}{leader-ld}{definition}
+				\command{vimblue}{leader-lr}{rename}
+				\command{vimblue}{leader-lf}{formatting}
+				\command{vimblue}{leader-lt}{type def}
+				\command{vimblue}{leader-lx}{find references}
 
-    \textbf{CMake $\&$ Make}\\
-    \command{vimblue}{<leader>cd}{build in \texttt{debug} mode}
-    \command{vimblue}{<leader>cr}{build in \texttt{release} mode}
-    
-    \textbf{nvim-gdb}\\
-    \command{vimblue}{:h nvimgdb.txt}{show help}
-    \command{vimblue}{<leader>d\{d,l,p,b\}}{start a new debugging session}
-    \command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
-    \command{vimblue}{<F10>}{step over statement}
-    \command{vimblue}{<F11>}{step into statement}
-    \command{vimblue}{<F12>}{step out current frame}
-    \command{vimblue}{<F9>}{print a variable}
+				\textbf{Window Splitting}\\
+				\command{vimblue}{<leader>ws}{horizontal split}
+				\command{vimblue}{<leader>w\{+,-\}}{horizontal resize}
+				\command{vimblue}{<leader>wv}{vertical split}
+				\command{vimblue}{<leader>w\{<,>\}}{vertical resize}
 
-    %\textbf{LLDB-Debugger}\\
-    %\command{vimblue}{:h lldb}{show help}
-    %\command{vimblue}{<F4>}{start a new debugging session}
-    %\command{vimblue}{<F5>/<F5><F5>}{switch to debug/code mode}
-    %\command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
-    %\command{vimblue}{<F8>}{continue}
-    %\command{vimblue}{<F9>}{print a variable}
-\end{commandbox}
+				\textbf{Buffer Navigation}\\
+				\command{vimblue}{<leader><F5>}{previous buffer}
+				\command{vimblue}{<leader><F6>}{next buffer}
 
-\end{minipage} 
-%----------------------------------------------------------------------------------------
-%	HEADING TWO
-%----------------------------------------------------------------------------------------				
-			
-% End the first column of text
-} % End the first division of the page
 
-%----------------------------------------------------------------------------------------
-%	SECOND COLUMN SPECIFICATION 
-%----------------------------------------------------------------------------------------
+				\textbf{CMake $\&$ Make}\\
+				\command{vimblue}{<leader>cd}{build in \texttt{debug} mode}
+				\command{vimblue}{<leader>cr}{build in \texttt{release} mode}
 
-\put(105,180){ % Divide the page
-\begin{minipage}[t]{85mm} % Create a box to house text
+				\textbf{nvim-gdb}\\
+				\command{vimblue}{:h nvimgdb.txt}{show help}
+				\command{vimblue}{<leader>d\{d,l,p,b\}}{start a new debugging session}
+				\command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
+				\command{vimblue}{<F10>}{step over statement}
+				\command{vimblue}{<F11>}{step into statement}
+				\command{vimblue}{<F12>}{step out current frame}
+				\command{vimblue}{<F9>}{print a variable}
 
-\begin{commandbox}[tmux]{thm:tmux}{vimgreen}{white}
-	\newcommand{\commandcolor}{vimgreen}
-	\command{\commandcolor}{C-b + \{H,J,K,L\}}{window navigation}
-\end{commandbox}
-%----------------------------------------------------------------------------------------
-%	HEADING FOUR
-%----------------------------------------------------------------------------------------
+				%\textbf{LLDB-Debugger}\\
+				%\command{vimblue}{:h lldb}{show help}
+				%\command{vimblue}{<F4>}{start a new debugging session}
+				%\command{vimblue}{<F5>/<F5><F5>}{switch to debug/code mode}
+				%\command{vimblue}{<M-b> (M=\texttt{Alt})}{Set/unset breakpoint}
+				%\command{vimblue}{<F8>}{continue}
+				%\command{vimblue}{<F9>}{print a variable}
+			\end{commandbox}
 
-%----------------------------------------------------------------------------------------
-%	HEADING FIVE
-%----------------------------------------------------------------------------------------				
-					
-%----------------------------------------------------------------------------------------
+		\end{minipage}
+		%----------------------------------------------------------------------------------------
+		%	HEADING TWO
+		%----------------------------------------------------------------------------------------				
 
-\end{minipage} % End the second column of text
-} % End the second division of the page
+		% End the first column of text
+	} % End the first division of the page
 
-%----------------------------------------------------------------------------------------
-%	THIRD COLUMN SPECIFICATION 
-%----------------------------------------------------------------------------------------
+	%----------------------------------------------------------------------------------------
+	%	SECOND COLUMN SPECIFICATION 
+	%----------------------------------------------------------------------------------------
 
-\put(200,180){ % Divide the page
-\begin{minipage}[t]{85mm} % Create a box to house tex
+	\put(105,180){ % Divide the page
+		\begin{minipage}[t]{85mm} % Create a box to house text
 
-%----------------------------------------------------------------------------------------
-%	IMPORTANT FILES
-%----------------------------------------------------------------------------------------
+			\begin{commandbox}[tmux]{thm:tmux}{vimgreen}{white}
+				\newcommand{\commandcolor}{vimgreen}
+				\command{\commandcolor}{C-b + \{H,J,K,L\}}{window navigation}
+			\end{commandbox}
+			%----------------------------------------------------------------------------------------
+			%	HEADING FOUR
+			%----------------------------------------------------------------------------------------
 
-\sectiontitle{Important files}
+			%----------------------------------------------------------------------------------------
+			%	HEADING FIVE
+			%----------------------------------------------------------------------------------------				
 
-\texttt{Makefile}
+			%----------------------------------------------------------------------------------------
 
-\texttt{/vim/config.vim}
+		\end{minipage} % End the second column of text
+	} % End the second division of the page
 
-\vspace{\baselineskip} % Whitespace before the next section
+	%----------------------------------------------------------------------------------------
+	%	THIRD COLUMN SPECIFICATION 
+	%----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
-%	LINKS AND INFORMATION
-%----------------------------------------------------------------------------------------
+	\put(200,180){ % Divide the page
+		\begin{minipage}[t]{85mm} % Create a box to house tex
 
-\sectiontitle{Links and information}
+			%----------------------------------------------------------------------------------------
+			%	IMPORTANT FILES
+			%----------------------------------------------------------------------------------------
 
-\url{http://awesome.naquadah.org/}
+			\sectiontitle{Important files}
 
-\url{http://awesome.naquadah.org/wiki/}
+			\texttt{Makefile}
 
-%----------------------------------------------------------------------------------------
-%	FOOTNOTE
-%----------------------------------------------------------------------------------------
+			\texttt{/vim/config.vim}
 
-\vspace{\baselineskip}
-\linethickness{0.5mm} % Thickness of the footer line
-{\color{mygray}\line(1,0){30}} % Print the line with a custom color
+			\vspace{\baselineskip} % Whitespace before the next section
 
-\footnotesize{
-Created by Christoph Anneser\\ 
-}
+			%----------------------------------------------------------------------------------------
+			%	LINKS AND INFORMATION
+			%----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
+			\sectiontitle{Links and information}
 
-\end{minipage} % End the third column of text
-} % End the third division of the page
+			\url{http://awesome.naquadah.org/}
+
+			\url{http://awesome.naquadah.org/wiki/}
+
+			%----------------------------------------------------------------------------------------
+			%	FOOTNOTE
+			%----------------------------------------------------------------------------------------
+
+			\vspace{\baselineskip}
+			\linethickness{0.5mm} % Thickness of the footer line
+			{\color{mygray}\line(1,0){30}} % Print the line with a custom color
+
+			\footnotesize{
+				Created by Christoph Anneser\\
+			}
+
+			%----------------------------------------------------------------------------------------
+
+		\end{minipage} % End the third column of text
+	} % End the third division of the page
 \end{picture} % End the container for the entire page
 
 %----------------------------------------------------------------------------------------
@@ -245,12 +250,12 @@ Created by Christoph Anneser\\
 %----------------------------------------------------------------------------------------
 %	HEADING TWO
 %----------------------------------------------------------------------------------------				
-			
+
 \begin{commandbox}[tmux]{thm:tmux}{vimgreen}{white}
 	\newcommand{\commandcolor}{vimgreen}
 	\command{\commandcolor}{C-b + \{H,J,K,L\}}{window navigation}
 \end{commandbox}
-\end{minipage} 
+\end{minipage}
 % End the first column of text
 } % End the first division of the page
 
@@ -259,19 +264,19 @@ Created by Christoph Anneser\\
 %----------------------------------------------------------------------------------------
 
 \put(105,180){ % Divide the page
-\begin{minipage}[t]{85mm} % Create a box to house text
+	\begin{minipage}[t]{85mm} % Create a box to house text
 
-%----------------------------------------------------------------------------------------
-%	HEADING FOUR
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
+		%	HEADING FOUR
+		%----------------------------------------------------------------------------------------
 
-%----------------------------------------------------------------------------------------
-%	HEADING FIVE
-%----------------------------------------------------------------------------------------				
-					
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
+		%	HEADING FIVE
+		%----------------------------------------------------------------------------------------				
 
-\end{minipage} % End the second column of text
+		%----------------------------------------------------------------------------------------
+
+	\end{minipage} % End the second column of text
 } % End the second division of the page
 
 %----------------------------------------------------------------------------------------
@@ -279,45 +284,45 @@ Created by Christoph Anneser\\
 %----------------------------------------------------------------------------------------
 
 \put(200,180){ % Divide the page
-\begin{minipage}[t]{85mm} % Create a box to house tex
+	\begin{minipage}[t]{85mm} % Create a box to house tex
 
-%----------------------------------------------------------------------------------------
-%	IMPORTANT FILES
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
+		%	IMPORTANT FILES
+		%----------------------------------------------------------------------------------------
 
-\sectiontitle{Important files}
+		\sectiontitle{Important files}
 
-\texttt{Makefile}
+		\texttt{Makefile}
 
-\texttt{/vim/config.vim}
+		\texttt{/vim/config.vim}
 
-\vspace{\baselineskip} % Whitespace before the next section
+		\vspace{\baselineskip} % Whitespace before the next section
 
-%----------------------------------------------------------------------------------------
-%	LINKS AND INFORMATION
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
+		%	LINKS AND INFORMATION
+		%----------------------------------------------------------------------------------------
 
-\sectiontitle{Links and information}
+		\sectiontitle{Links and information}
 
-\url{http://awesome.naquadah.org/}
+		\url{http://awesome.naquadah.org/}
 
-\url{http://awesome.naquadah.org/wiki/}
+		\url{http://awesome.naquadah.org/wiki/}
 
-%----------------------------------------------------------------------------------------
-%	FOOTNOTE
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
+		%	FOOTNOTE
+		%----------------------------------------------------------------------------------------
 
-\vspace{\baselineskip}
-\linethickness{0.5mm} % Thickness of the footer line
-{\color{mygray}\line(1,0){30}} % Print the line with a custom color
+		\vspace{\baselineskip}
+		\linethickness{0.5mm} % Thickness of the footer line
+		{\color{mygray}\line(1,0){30}} % Print the line with a custom color
 
-\footnotesize{
-Created by Christoph Anneser\\ 
-}
+		\footnotesize{
+			Created by Christoph Anneser\\
+		}
 
-%----------------------------------------------------------------------------------------
+		%----------------------------------------------------------------------------------------
 
-\end{minipage} % End the third column of text
+	\end{minipage} % End the third column of text
 } % End the third division of the page
 \end{picture} % End the container for the entire page
 

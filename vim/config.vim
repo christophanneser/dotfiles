@@ -78,11 +78,14 @@ let g:deoplete#enable_at_startup = 1
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Clang-Format
-let g:clang_format#auto_format = 1
-let g:clang_format#detect_style_file = 1
-let g:clang_format#auto_format_on_insert_leave = 0
+" let g:clang_format#auto_format = 1
+" let g:clang_format#detect_style_file = 1
+" let g:clang_format#auto_format_on_insert_leave = 0
 " " vim-clang overrides clang-format command
-let g:clang_enable_format_command = 0
+" let g:clang_enable_format_command = 0
+"
+" autocmd FileType c,cpp,objc map <buffer><C-f> :ClangFormat<CR>
+" autocmd FileType c,cpp,objc imap <buffer><C-f> <ESC>:ClangFormat<CR>i
 
 " neoformat
 let g:neoformat_enabled_python = ['autopep8']
@@ -182,8 +185,8 @@ augroup END
 " highlight todos
 augroup HiglightTodo
     autocmd!
-    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxYellowBold', 'TODO\|todo', 'todo' -1)
-    autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', 'FIXME\|fixme', 'fixme' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxRedBold', '\(TODO\|todo\|ToDo\|toDo\).*', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', '\(FIXME\|fixme\).*', 'fixme' -1)
 augroup END
 
 filetype plugin on

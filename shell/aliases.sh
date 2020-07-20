@@ -21,6 +21,7 @@ alias gs='git status'
 alias gp='git push'
 alias gpr='git pull -r'
 alias gpull='git pull'
+alias gc='git checkout'
 alias gcm='git commit --message'
 alias gcam='git commit --all --message'
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(normal)%h%C(reset) %C(dim white)- %an (%ar) -%C(reset) %C(normal)%s%C(reset) %C(bold normal)%d%C(reset)' --all"

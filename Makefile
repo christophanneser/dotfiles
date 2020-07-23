@@ -49,9 +49,11 @@ reset-symlinks: create-directories
 	@sh -c "[ ! -L ~/.vim ] || rm -r ~/.vim;"
 	@sh -c "[ ! -L ~/.vimrc ] || rm ~/.vimrc;"
 #---------------------------------------------------------------------------
-install-file-listener:
-	@sudo cp listener.py /bin/listener
+install-utils:
+	@sudo cp utils/listener.py /bin/listener
 	@sudo chmod +x /bin/listener
+	@sudo cp utils/prettify_json.py /bin/prettify_json
+	@sudo chmod +x /bin/prettify_json
 #---------------------------------------------------------------------------
 install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/shell/bashrc ~/.bashrc

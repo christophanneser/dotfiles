@@ -136,6 +136,11 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 				\command{vimblue}{<leader>wv}{vertical split}
 				\command{vimblue}{<leader>w\{<,>\}}{vertical resize}
 
+                \textbf{Useful Deletion Commands}\\
+                \command{vimblue}{d$\{0,\$\}$}{delete from current pos to $0$ or \$}
+                \command{vimblue}{d\^{}}{delete from cursor to first non-white char}
+                \command{vimblue}{d$\{w,b\}$}{delete from cursor to end or beg. of word}
+
 				\textbf{Buffer Navigation}\\
 				\command{vimblue}{<leader><F5>}{previous buffer}
 				\command{vimblue}{<leader><F6>}{next buffer}

@@ -26,3 +26,9 @@ alias gcm='git commit --message'
 alias gcam='git commit --all --message'
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(normal)%h%C(reset) %C(dim white)- %an (%ar) -%C(reset) %C(normal)%s%C(reset) %C(bold normal)%d%C(reset)' --all"
 
+#---------------------------------------------------------------------------
+# Cmake aliases
+#---------------------------------------------------------------------------
+alias deb='cmake -DCMAKE_BUILD_TYPE=DEBUG ..'
+alias rel='cmake -DCMAKE_BUILD_TYPE=RELEASE ..'
+alias reldeb='cmake -DCMAKE_BUILD_TYPE=RELWITHDEBINFO ..'

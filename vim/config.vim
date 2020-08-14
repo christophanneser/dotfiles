@@ -118,6 +118,10 @@ nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
 map <silent> <F5> :bp!<CR>
 map <silent> <F6> :bn!<CR>
 
+" Yanking to clipboard
+noremap <Leader>Y "+yy
+noremap <Leader>P "+p
+
 " Deoplete suggestion navigation
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"

@@ -34,7 +34,8 @@ install-ls-cc:
 	@sudo apt install ccls # alternatively build from sources: https://github.com/MaskRay/ccls
 #---------------------------------------------------------------------------
 install-ls-py:
-	pip3 install python-language-server
+	@pip3 install 'python-language-server[all]'
+	# @pip3 install python-language-server
 #---------------------------------------------------------------------------
 install-ls-tex:
 	cargo install --git https://github.com/latex-lsp/texlab.git

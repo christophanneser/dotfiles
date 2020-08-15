@@ -9,6 +9,12 @@ CCLS_BUILD_DIR := ~/.ccls/build
 CCLS_INSTALL_PREFIX := ~/.local
 LLVM_PREFIX_PATH := /usr/lib/llvm-9/lib/cmake
 #---------------------------------------------------------------------------
+encrypt-remotes:
+	@gpg --symmetric --cipher-algo AES256 shell/remotes.sh
+#---------------------------------------------------------------------------
+decrypt-remotes:
+	@gpg -o shell/remotes.sh -d shell/remotes.sh.gpg
+#---------------------------------------------------------------------------
 key-switches:
 	gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 #---------------------------------------------------------------------------

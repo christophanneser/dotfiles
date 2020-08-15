@@ -64,3 +64,4 @@ fi
 # aliases
 include $SHELLCONF/aliases.sh
 source $SHELLCONF/functions.sh
+source $SHELLCONF/remotes.sh

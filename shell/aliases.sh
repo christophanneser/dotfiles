@@ -32,3 +32,7 @@ alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(normal)
 alias deb='cmake -DCMAKE_BUILD_TYPE=DEBUG ..'
 alias rel='cmake -DCMAKE_BUILD_TYPE=RELEASE ..'
 alias reldeb='cmake -DCMAKE_BUILD_TYPE=RELWITHDEBINFO ..'
+
+# Neovim alias
+alias v='nvim'
+alias o='okular'

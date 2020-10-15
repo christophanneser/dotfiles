@@ -7,9 +7,18 @@ nmap <leader>cc :action CommentByLineComment<CR>
 nmap <leader>rc :action ReformatCode<CR>
 
 nmap <leader>dd :action Debug<CR>
-nmap <leader>bb :action ToggleLineBreakpoint<CR>
+nmap <leader>B :action ToggleLineBreakpoint<CR>
+nmap <leader>bb :action BuildArtifact<CR>
 nmap <leader>rr :action Run<CR>
+nmap <leader>ot :action ActivateTerminalToolWindow<CR>
+" hide the currently focused window
+nmap <leader>w :action HideActiveWindow<CR>
+nmap <leader>hh :action Back<CR>
+nmap <leader>ll :action Forward<CR>
 
+" tab navigation
+map <silent> <F5> :action PreviousTab<CR>
+map <silent> <F6> :action NextTab<CR>
 
 " Vim settings
 set ignorecase             " case insensitive searching

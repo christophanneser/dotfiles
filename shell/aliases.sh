@@ -34,6 +34,7 @@ alias deb='cmake -DCMAKE_BUILD_TYPE=DEBUG ..'
 alias rel='cmake -DCMAKE_BUILD_TYPE=RELEASE ..'
 alias reldeb='cmake -DCMAKE_BUILD_TYPE=RELWITHDEBINFO ..'
 
-# Neovim alias
+# Oftenly used programs aliases
 alias v='nvim'
 alias o='okular'
+alias c='clear'

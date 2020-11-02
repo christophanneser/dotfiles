@@ -9,6 +9,13 @@ CCLS_BUILD_DIR := ~/.ccls/build
 CCLS_INSTALL_PREFIX := ~/.local
 LLVM_PREFIX_PATH := /usr/lib/llvm-9/lib/cmake
 #---------------------------------------------------------------------------
+install-nerd-fonts:
+	# nerd fonts are used for displaying icons in NeoMutt
+	@curl https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/\
+	patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf \
+	-o ~/.local/share/fonts/nerd-fonts.ttf
+	@fc-cache -fv # manually rebuilt font cache
+#---------------------------------------------------------------------------
 encrypt-remotes:
 	@gpg --symmetric --cipher-algo AES256 shell/remotes.sh
 #---------------------------------------------------------------------------

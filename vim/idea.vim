@@ -1,24 +1,41 @@
 " include defaults from my actual vim config such as leader etc
 source ~/.config/nvim/config.vim
 
+" set bookmarks with Ctrl+Shift+Number and navigate using Ctrl+Number
+
 nmap <leader>ld :action GotoDeclaration<CR>
 nmap <leader>lc :action GotoClass<CR>
 nmap <leader>cc :action CommentByLineComment<CR>
 nmap <leader>rc :action ReformatCode<CR>
+nmap <leader>fs :action ToggleFullScreen<CR>
+
+nmap <C-J> :action EditorDownWithSelection<CR>
+nmap <C-M> :action EditorUpWithSelection<CR>
+
+nmap <C-+> :action EditorIncreaseFontSize<CR>
+nmap <leader>++ :action EditorIncreaseFontSize<CR>
+
 
 nmap <leader>dd :action Debug<CR>
 nmap <leader>B :action ToggleLineBreakpoint<CR>
 nmap <leader>bb :action BuildArtifact<CR>
 nmap <leader>rr :action Run<CR>
 nmap <leader>ot :action ActivateTerminalToolWindow<CR>
+
 " hide the currently focused window
-nmap <leader>w :action HideActiveWindow<CR>
+nmap <leader>hw :action HideActiveWindow<CR>
 nmap <leader>hh :action Back<CR>
 nmap <leader>ll :action Forward<CR>
 
 " tab navigation
 map <silent> <F5> :action PreviousTab<CR>
 map <silent> <F6> :action NextTab<CR>
+
+" Window navigation (different to actual nvim)
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+map <C-H> <C-W>h
 
 " Vim settings
 set ignorecase             " case insensitive searching

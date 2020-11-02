@@ -32,6 +32,7 @@ map <silent> <F5> :action PreviousTab<CR>
 map <silent> <F6> :action NextTab<CR>
 
 " Window navigation (different to actual nvim)
+" todo to make this work, all C-H prefix keys must be removed in clion -> export all clion configs?
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l

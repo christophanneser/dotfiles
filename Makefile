@@ -39,6 +39,7 @@ configure-mails:
 	@rm ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
 
 	# soft-link decrypted config files
+	@mkdir -p ~/.config/msmtp/ && cp mails/msmtprc ~/.config/msmtp/msmtprc
 	@ln -sf ~/.config/msmtp/msmtprc ~/.msmtprc
 	@mkdir -p ~/.abook && ln -sf ${MAKEFILE_DIR}/mails/addressbook ~/.abook/addressbook
 	@ln -sf ${MAKEFILE_DIR}/mails/mbsyncrc ~/.mbsyncrc

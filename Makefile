@@ -30,6 +30,7 @@ install-mails-programs:
 	@sudo apt-get install neomutt  # highly configurable mail client
 	@sudo apt-get install abook  # contact manager for NeoMutt
 	@sudo apt-get install notmuch  # allows for querying the mail databases
+	@sudo apt-get install libsecret-tools  # allows to store passwords in keyring
 #---------------------------------------------------------------------------
 configure-mails:
 	# decrypt mail configs

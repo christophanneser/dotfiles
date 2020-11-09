@@ -19,8 +19,8 @@ install-nerd-fonts:
 #---------------------------------------------------------------------------
 encrypt-mail-configs:
 	@cp ~/.config/msmtp/msmtprc ${MAKEFILE_DIR}/mails/msmtprc
-	@rm -f ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
-	@tar -czvf mail-configs.tar.gz ${MAKEFILE_DIR}/mails/
+	@rm -f mails/mail-configs.tar.gz
+	@tar --exclude='*gpg' --exclude='*.gitignore' -czvf  mail-configs.tar.gz -C ${MAKEFILE_DIR}/mails/ .
 	@mv mail-configs.tar.gz ${MAKEFILE_DIR}/mails/
 	@gpg --symmetric --cipher-algo AES256 ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
 #---------------------------------------------------------------------------

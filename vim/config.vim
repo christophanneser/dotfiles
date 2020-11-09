@@ -138,6 +138,7 @@ vnoremap <Space> zf
 " Trigger build using cmake
 nmap <leader>cd :Deb<Space>
 nmap <leader>cr :Rel<Space>
+nnoremap <leader>s i//---------------------------------------------------------------------------<ESC>
 
 " Commenting Plugin
 " Add spaces after comment delimiters by default

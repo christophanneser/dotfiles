@@ -15,6 +15,33 @@ install-nerd-fonts:
 	patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf \
 	-o ~/.local/share/fonts/nerd-fonts.ttf
 	@fc-cache -fv # manually rebuilt font cache
+	# manually set terminal using "Hack Regular Nerd Font"
+#---------------------------------------------------------------------------
+encrypt-mail-configs:
+	@cp ~/.config/msmtp/msmtprc ${MAKEFILE_DIR}/mails/msmtprc
+	@rm -f ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
+	@tar -czvf mail-configs.tar.gz ${MAKEFILE_DIR}/mails/
+	@mv mail-configs.tar.gz ${MAKEFILE_DIR}/mails/
+	@gpg --symmetric --cipher-algo AES256 ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
+#---------------------------------------------------------------------------
+install-mails-programs:
+	@sudo apt-get install msmtp  # for sending mails via SMTP
+	@sudo apt-get install isync  # executable mbsync, for IMAP
+	@sudo apt-get install neomutt  # highly configurable mail client
+	@sudo apt-get install abook  # contact manager for NeoMutt
+	@sudo apt-get install notmuch  # allows for querying the mail databases
+#---------------------------------------------------------------------------
+configure-mails:
+	# decrypt mail configs
+	@gpg -o mails/mail-configs.tar.gz -d mails/mail-configs.tar.gz.gpg
+	@tar -zxvf ${MAKEFILE_DIR}/mails/mail-configs.tar.gz -C ${MAKEFILE_DIR}/mails/
+	@rm ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
+
+	# soft-link decrypted config files
+	@ln -sf ~/.config/msmtp/msmtprc ~/.msmtprc
+	@mkdir -p ~/.abook && ln -sf ${MAKEFILE_DIR}/mails/addressbook ~/.abook/addressbook
+	@ln -sf ${MAKEFILE_DIR}/mails/mbsyncrc ~/.mbsyncrc
+	@ln -sf ${MAKEFILE_DIR}/mails/neomutt/ ~/.neomutt
 #---------------------------------------------------------------------------
 encrypt-remotes:
 	@gpg --symmetric --cipher-algo AES256 shell/remotes.sh

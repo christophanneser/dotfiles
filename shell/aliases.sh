@@ -19,6 +19,8 @@ alias du='du -h -c'
 #---------------------------------------------------------------------------
 alias gs='git status --untracked-files=no'
 alias gsu='git status --untracked-files=normal'
+alias gd='git diff'
+alias gds='git diff --staged'
 alias gp='git push'
 alias gpr='git pull -r'
 alias gpull='git pull'

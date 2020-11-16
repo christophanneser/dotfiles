@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import json;
+import json
 import sys
 
 f = open(sys.argv[1], 'r')

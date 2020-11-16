@@ -191,7 +191,8 @@ augroup END
 " highlight todos
 augroup HiglightTodo
     autocmd!
-    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxRedBold', '\(TODO\|todo\|ToDo\|toDo\).*', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxRedBold', '\(TODO\|todo\|ToDo\|Todo\|toDo\).*', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxBlueBold', '\(\~\~\).*', 'todo' -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', '\(FIXME\|fixme\).*', 'fixme' -1)
 augroup END
 

@@ -72,14 +72,16 @@ install-lldebugger:
 	@sudo apt-get -y install lldb-8
 	@sudo ln -s /usr/bin/lldb-server-8 /usr/bin/lldb-server-8.0.0
 #---------------------------------------------------------------------------
-install-ls-cc:
+# Language Servers
+#---------------------------------------------------------------------------
+install-ls-cc: # C++
 	@sudo apt install ccls # alternatively build from sources: https://github.com/MaskRay/ccls
 #---------------------------------------------------------------------------
-install-ls-py:
+install-ls-py: # Python
 	@pip3 install 'python-language-server[all]'
 	# @pip3 install python-language-server
 #---------------------------------------------------------------------------
-install-ls-tex:
+install-ls-tex: # TeX
 	cargo install --git https://github.com/latex-lsp/texlab.git
 #---------------------------------------------------------------------------
 install-clang-tools:

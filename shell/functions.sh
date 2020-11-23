@@ -38,3 +38,7 @@ function swap()
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
+
+function killgrep() {
+    kill $(ps aux | grep $1 | awk "{print $2}")
+}

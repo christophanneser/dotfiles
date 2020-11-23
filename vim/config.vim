@@ -178,6 +178,8 @@ set foldmethod=syntax      " use for cpp and c files, python uses indent
 set list!                   " show all characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set guifont=Monaco:h20
+set spell spelllang=en_us   " enable spell checker and set default language to english
+"
 " set colorscheme here
 colorscheme gruvbox
 

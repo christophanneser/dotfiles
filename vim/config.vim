@@ -122,6 +122,9 @@ map <silent> <F6> :bn!<CR>
 noremap <Leader>Y "+yy
 noremap <Leader>P "+p
 
+" Show suggestions
+inoremap <C-Space> <C-N>
+
 " Deoplete suggestion navigation
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"

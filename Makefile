@@ -84,6 +84,12 @@ install-ls-py: # Python
 install-ls-tex: # TeX
 	cargo install --git https://github.com/latex-lsp/texlab.git
 #---------------------------------------------------------------------------
+install-shell-translator: # Shell translator using Google Translate CLI
+	@cd ~/Documents; \
+		git clone https://github.com/soimort/translate-shell; \
+		cd translate-shell; make; \
+		sudo ln -s ~/Documents/translate-shell/build/trans /usr/local/bin/trans;
+#---------------------------------------------------------------------------
 install-clang-tools:
 	@sudo apt-get install clang-tools
 #---------------------------------------------------------------------------

@@ -65,3 +65,6 @@ fi
 include $SHELLCONF/aliases.sh
 source $SHELLCONF/functions.sh
 source $SHELLCONF/remotes.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

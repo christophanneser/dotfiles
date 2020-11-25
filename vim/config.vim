@@ -88,6 +88,9 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " autocmd FileType c,cpp,objc map <buffer><C-f> :ClangFormat<CR>
 " autocmd FileType c,cpp,objc imap <buffer><C-f> <ESC>:ClangFormat<CR>i
 
+" NVIM Internal Spell Checker
+:setlocal spell spelllang=en_us
+
 " neoformat
 let g:neoformat_enabled_python = ['autopep8']
 

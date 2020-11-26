@@ -20,6 +20,7 @@ def timed_execution(commands, timeout):
         try:
             p.wait(timeout)
         except subprocess.TimeoutExpired:
+            p.kill()
             sys.exit(
                 "Error: command could not be executed within specified timeout")
 

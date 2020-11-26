@@ -5,14 +5,12 @@ import argparse
 import re
 import json
 import os
-from pathlib import Path
 import time
-import subprocess
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileModifiedEvent, FileCreatedEvent
-import sys
 
 DEFAULT_CONFIG_PATH = ".listener-config"
+
 
 class FileChecker():
     def __init__(self, config):
@@ -32,7 +30,6 @@ class FileChecker():
             except:
                 print("Error in your regex \"" + regex + "\"")
                 exit(1)
-
 
     def check(self, path):
         for regex in self.blacklist_patterns:
@@ -60,10 +57,12 @@ class Configuration():
         self.files = self.config["files"]
         self.regexes = self.config["regexes"]
         self.blacklist = self.config["blacklist_regexes"]
+        self.init_commands = self.config["init_commands"]
         self.commands = self.config["commands"]
         self.exit_commands = self.config["exit_commands"]
         self.extended_commands = self.config["extended_commands"]
         self.extended_commands_interval = self.config["extended_commands_interval"]
+        #  self.timeout = self.config["timeout"]
         self.counter = 0
 
         print("use the following configuration: " + str(self))
@@ -71,10 +70,14 @@ class Configuration():
     def __repr__(self):
         return str(self.config)
 
+
 class Event(LoggingEventHandler):
     def __init__(self, file_checker, config):
         self.file_checker = file_checker
         self.config = config
+        # execute init commands
+        for command in self.config.init_commands:
+            os.system(command)
 
     def dispatch(self, event):
         if not (isinstance(event, FileModifiedEvent)) or not self.file_checker.check(event.src_path):
@@ -92,14 +95,17 @@ class Event(LoggingEventHandler):
 
 def store_default_config():
     config = {
-            "files": [],
-            "regexes": [".*.tex"], # watch on all tex files
-            "commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
-            "blacklist_regexes": [".*_tmp.*"], # blacklist those files used for compilation only
-            "exit_commands": ["rm _tmp*"],
-            "extended_commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "bibtex _tmp", "pdflatex _tmp", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
-            "extended_commands_interval": 10, # call extended commands after x times normal commands were called
-            }
+        "files": [],
+        "regexes": [".*.tex"],  # watch on all tex files
+        "init_commands": ["pdflatex main", "okular main.pdf"],
+        "commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
+        # blacklist those files used for compilation only
+        "blacklist_regexes": [".*_tmp.*"],
+        "exit_commands": ["rm _tmp*"],
+        "extended_commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "bibtex _tmp", "pdflatex _tmp", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
+        # call extended commands after x times normal commands were called
+        "extended_commands_interval": 10,
+    }
     with open('.listener-config', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
 
@@ -110,9 +116,12 @@ def exit_handler(exit_commands):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='File listener to mainly support LaTex dev')
-    parser.add_argument('-i', help='create default config file stored in .listener.config', action='store_true')
-    parser.add_argument('-c', dest="config", type=str, help='used if config file is different to .listener.config')
+    parser = argparse.ArgumentParser(
+        description='File listener to mainly support LaTex-based document development')
+    parser.add_argument(
+        '-i', help='create default config file stored in .listener.config', action='store_true')
+    parser.add_argument('-c', dest="config", type=str,
+                        help='used if config file is different to .listener.config')
 
     args = parser.parse_args()
     print(args)

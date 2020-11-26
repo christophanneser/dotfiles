@@ -3,13 +3,25 @@
 import atexit
 import argparse
 import re
+import sys
 import json
 import os
 import time
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileModifiedEvent, FileCreatedEvent
+import subprocess
 
 DEFAULT_CONFIG_PATH = ".listener-config"
+
+
+def timed_execution(commands, timeout):
+    for command in commands:
+        p = subprocess.Popen(command, shell=True)
+        try:
+            p.wait(timeout)
+        except subprocess.TimeoutExpired:
+            sys.exit(
+                "Error: command could not be executed within specified timeout")
 
 
 class FileChecker():
@@ -62,7 +74,7 @@ class Configuration():
         self.exit_commands = self.config["exit_commands"]
         self.extended_commands = self.config["extended_commands"]
         self.extended_commands_interval = self.config["extended_commands_interval"]
-        #  self.timeout = self.config["timeout"]
+        self.timeout = self.config["timeout"]
         self.counter = 0
 
         print("use the following configuration: " + str(self))
@@ -86,18 +98,17 @@ class Event(LoggingEventHandler):
         self.config.counter += 1
         print(event)
         if self.config.counter % self.config.extended_commands_interval == 0:
-            for command in self.config.extended_commands:
-                os.system(command)
+            timed_execution(self.config.extended_commands, self.config.timeout)
         else:
-            for command in self.config.commands:
-                os.system(command)
+            timed_execution(self.config.commands, self.config.timeout)
 
 
 def store_default_config():
     config = {
         "files": [],
         "regexes": [".*.tex"],  # watch on all tex files
-        "init_commands": ["pdflatex main", "okular main.pdf"],
+        # must detach (&) from pdf-viewer as process keeps alive
+        "init_commands": ["pdflatex main", "okular main.pdf &"],
         "commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
         # blacklist those files used for compilation only
         "blacklist_regexes": [".*_tmp.*"],
@@ -105,6 +116,7 @@ def store_default_config():
         "extended_commands": ["cp main.tex _tmp.tex", "pdflatex _tmp", "bibtex _tmp", "pdflatex _tmp", "pdflatex _tmp", "cp _tmp.pdf main.pdf"],
         # call extended commands after x times normal commands were called
         "extended_commands_interval": 10,
+        "timeout": 5
     }
     with open('.listener-config', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)

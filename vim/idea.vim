@@ -10,6 +10,7 @@ nmap <leader>lf :action ReformatCode<CR>
 nmap <leader>fs :action ToggleFullScreen<CR>
 
 " go through completion options
+inoremap <C-Space> <ESC>:action CodeCompletion<CR>
 
 nmap <C-+> :action EditorIncreaseFontSize<CR>
 nmap <leader>++ :action EditorIncreaseFontSize<CR>

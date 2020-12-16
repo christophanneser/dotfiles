@@ -103,8 +103,8 @@ reset-symlinks: create-directories
 install-utils:
 	@sudo cp utils/listener.py /bin/listener
 	@sudo chmod +x /bin/listener
-	@sudo cp utils/prettify_json.py /bin/prettify_json
-	@sudo chmod +x /bin/prettify_json
+	@sudo cp utils/format_json.py /bin/format_json
+	@sudo chmod +x /bin/format_json
 #---------------------------------------------------------------------------
 install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/shell/bashrc ~/.bashrc

@@ -144,7 +144,11 @@ vnoremap <Space> zf
 " Trigger build using cmake
 nmap <leader>cd :Deb<Space>
 nmap <leader>cr :Rel<Space>
+" Default separators
 nnoremap <leader>s i//---------------------------------------------------------------------------<ESC>
+
+" Separators for LaTex
+autocmd FileType plaintex nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
 
 " Commenting Plugin
 " Add spaces after comment delimiters by default

@@ -85,12 +85,14 @@ class Configuration():
 
 
 class Event(LoggingEventHandler):
-    def __init__(self, file_checker, config):
+    def __init__(self, file_checker, config, run_init=True):
         self.file_checker = file_checker
         self.config = config
+
         # execute init commands
-        for command in self.config.init_commands:
-            os.system(command)
+        if run_init:
+            for command in self.config.init_commands:
+                os.system(command)
 
     def dispatch(self, event):
         if not (isinstance(event, FileModifiedEvent)) or not self.file_checker.check(event.src_path):
@@ -135,6 +137,8 @@ if __name__ == "__main__":
         '-i', help='create default config file stored in .listener.config', action='store_true')
     parser.add_argument('-c', dest="config", type=str,
                         help='used if config file is different to .listener.config')
+    parser.add_argument(
+        '--no-init', help="do not run init-commands", action='store_true')
 
     args = parser.parse_args()
     print(args)
@@ -153,7 +157,7 @@ if __name__ == "__main__":
     current_working_dir = os.getcwd()
     observer = Observer()
     file_checker = FileChecker(config)
-    event_handler = Event(file_checker, config)
+    event_handler = Event(file_checker, config, not args.no_init)
     observer.schedule(event_handler, current_working_dir, recursive=True)
     observer.start()
 

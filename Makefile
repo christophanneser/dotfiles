@@ -36,14 +36,14 @@ configure-mails:
 	# decrypt mail configs
 	@gpg -o mails/mail-configs.tar.gz -d mails/mail-configs.tar.gz.gpg
 	@tar -zxvf ${MAKEFILE_DIR}/mails/mail-configs.tar.gz -C ${MAKEFILE_DIR}/mails/
-	@rm ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
+	# @rm ${MAKEFILE_DIR}/mails/mail-configs.tar.gz
 
 	# soft-link decrypted config files
-	@mkdir -p ~/.config/msmtp/ && cp mails/msmtprc ~/.config/msmtp/msmtprc
-	@ln -sf ~/.config/msmtp/msmtprc ~/.msmtprc
-	@mkdir -p ~/.abook && ln -sf ${MAKEFILE_DIR}/mails/addressbook ~/.abook/addressbook
-	@ln -sf ${MAKEFILE_DIR}/mails/mbsyncrc ~/.mbsyncrc
-	@ln -sf ${MAKEFILE_DIR}/mails/neomutt/ ~/.neomutt
+	# @mkdir -p ~/.config/msmtp/ && cp mails/msmtprc ~/.config/msmtp/msmtprc
+	# @ln -sf ~/.config/msmtp/msmtprc ~/.msmtprc
+	# @mkdir -p ~/.abook && ln -sf ${MAKEFILE_DIR}/mails/addressbook ~/.abook/addressbook
+	# @ln -sf ${MAKEFILE_DIR}/mails/mbsyncrc ~/.mbsyncrc
+	# @ln -sf ${MAKEFILE_DIR}/mails/neomutt/ ~/.neomutt
 #---------------------------------------------------------------------------
 encrypt-remotes:
 	@gpg --symmetric --cipher-algo AES256 shell/remotes.sh

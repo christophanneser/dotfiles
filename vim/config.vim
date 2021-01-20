@@ -29,6 +29,8 @@ Plug 'preservim/nerdcommenter'              " easy multiline commenting
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'sbdchd/neoformat'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Alternate map leader
@@ -87,6 +89,12 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 "
 " autocmd FileType c,cpp,objc map <buffer><C-f> :ClangFormat<CR>
 " autocmd FileType c,cpp,objc imap <buffer><C-f> <ESC>:ClangFormat<CR>i
+"
+" FZF driven search
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>g :GFiles<CR>
+nnoremap <silent> <leader>l :BLines<CR>
 
 " NVIM Internal Spell Checker
 :setlocal spell spelllang=en_us
@@ -196,8 +204,8 @@ colorscheme gruvbox
 " Remember folds when closing files
 augroup remember_folds
   autocmd!
-  autocmd BufWinLeave ?* mkview 1
-  autocmd BufWinEnter ?* silent! loadview 1
+  autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested silent! mkview!
+  autocmd BufWinEnter ?* silent! loadview
 augroup END
 
 " highlight todos

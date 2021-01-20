@@ -157,6 +157,8 @@ nnoremap <leader>s i//----------------------------------------------------------
 
 " Separators for LaTex
 autocmd FileType plaintex nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
+autocmd FileType tex nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
+autocmd FileType bib nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
 
 " Commenting Plugin
 " Add spaces after comment delimiters by default

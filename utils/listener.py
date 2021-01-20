@@ -21,8 +21,7 @@ def timed_execution(commands, timeout):
             p.wait(timeout)
         except subprocess.TimeoutExpired:
             p.kill()
-            sys.exit(
-                "Error: command could not be executed within specified timeout")
+            sys.exit("Error: command could not be executed within specified timeout")
 
 
 class FileChecker():
@@ -92,7 +91,7 @@ class Event(LoggingEventHandler):
         # execute init commands
         if run_init:
             for command in self.config.init_commands:
-                os.system(command)
+                timed_execution([command], self.config.timeout)
 
     def dispatch(self, event):
         if not (isinstance(event, FileModifiedEvent)) or not self.file_checker.check(event.src_path):

@@ -15,7 +15,7 @@ import subprocess
 DEFAULT_CONFIG_PATH = ".listener-config"
 
 
-def timed_execution(commands, timeout, logfile):
+def timed_execution(commands, timeout, logfile=".log"):
     for command in commands:
         print(command)
         os.system(command + " > " + logfile)

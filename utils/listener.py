@@ -3,10 +3,11 @@
 import atexit
 import argparse
 import re
-import sys
 import json
+import multiprocessing
 import os
 import time
+import sys
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileModifiedEvent, FileCreatedEvent
 import subprocess
@@ -14,14 +15,10 @@ import subprocess
 DEFAULT_CONFIG_PATH = ".listener-config"
 
 
-def timed_execution(commands, timeout):
+def timed_execution(commands, timeout, logfile):
     for command in commands:
-        p = subprocess.Popen(command, shell=True)
-        try:
-            p.wait(timeout)
-        except subprocess.TimeoutExpired:
-            p.kill()
-            sys.exit("Error: command could not be executed within specified timeout")
+        print(command)
+        os.system(command + " > " + logfile)
 
 
 class FileChecker():
@@ -85,6 +82,8 @@ class Configuration():
 
 class Event(LoggingEventHandler):
     def __init__(self, file_checker, config, run_init=True):
+        self.process = None  # access with lock only!
+        self.mutex = multiprocessing.Lock()
         self.file_checker = file_checker
         self.config = config
 
@@ -97,12 +96,30 @@ class Event(LoggingEventHandler):
         if not (isinstance(event, FileModifiedEvent)) or not self.file_checker.check(event.src_path):
             return
 
+        self.mutex.acquire()
+        print("aquired the mutex...")
+
+        # check for running jobs
+        if self.process and self.process.is_alive():
+            print("kill the last process...")
+            self.process.terminate()
+
         self.config.counter += 1
-        print(event)
+
         if self.config.counter % self.config.extended_commands_interval == 0:
-            timed_execution(self.config.extended_commands, self.config.timeout)
+            process = multiprocessing.Process(target=timed_execution, args=(
+                self.config.extended_commands, self.config.timeout, ".logfile"))
+            #  timed_execution(self.config.extended_commands, self.config.timeout)
         else:
-            timed_execution(self.config.commands, self.config.timeout)
+            process = multiprocessing.Process(target=timed_execution, args=(
+                self.config.commands, self.config.timeout, ".logfile"))
+            #  timed_execution(self.config.commands, self.config.timeout)
+        assert(process is not None)
+        self.process = process
+        self.process.start()
+        self.mutex.release()
+
+        # todo run another thread to check if worker thread finished before timeout...
 
 
 def store_default_config():

@@ -29,6 +29,7 @@ alias gc='git checkout'
 alias gcm='git commit --message'
 alias gcam='git commit --all --message'
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(normal)%h%C(reset) %C(dim white)- %an (%ar) -%C(reset) %C(normal)%s%C(reset) %C(bold normal)%d%C(reset)' --all"
+alias cdgr='cd $(git rev-parse --show-toplevel)' # cd to current git root directory
 
 #---------------------------------------------------------------------------
 # Cmake aliases
@@ -44,3 +45,7 @@ alias o='okular'
 alias c='clear'
 alias copy='xclip -sel clip'
 alias stoplistener='killgrep "python3 /usr/bin/listener"'
+
+# Play music to get happy again
+alias getlucky='vlc ~/Videos/getlucky.mp4 --start-time=190'
+alias wtf='vlc ~/Videos/wtf.mp4'

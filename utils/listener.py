@@ -100,23 +100,22 @@ class Event(LoggingEventHandler):
         print("aquired the mutex...")
 
         # check for running jobs
-        if self.process and self.process.is_alive():
-            print("kill the last process...")
-            self.process.terminate()
+        #  if self.process and self.process.is_alive():
+        #  print("kill the last process...")
+        #  self.process.terminate()
+        #  assert(not self.process.is_alive())
+        #  os.system("kill {0}".format(self.process))
 
         self.config.counter += 1
 
         if self.config.counter % self.config.extended_commands_interval == 0:
             process = multiprocessing.Process(target=timed_execution, args=(
                 self.config.extended_commands, self.config.timeout, ".logfile"))
-            #  timed_execution(self.config.extended_commands, self.config.timeout)
         else:
             process = multiprocessing.Process(target=timed_execution, args=(
                 self.config.commands, self.config.timeout, ".logfile"))
-            #  timed_execution(self.config.commands, self.config.timeout)
         assert(process is not None)
         self.process = process
-        self.process.start()
         self.mutex.release()
 
         # todo run another thread to check if worker thread finished before timeout...

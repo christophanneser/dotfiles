@@ -1,5 +1,7 @@
+"---------------------------------------------------------------------------
+" Plugins
+"---------------------------------------------------------------------------
 call plug#begin()
-
 if has('nvim')                              " deoplete
     Plug 'Shougo/deoplete.nvim', {
         \ 'commit': '02e48af3b995579a56ecafcda80fc6993ec4b3cf',
@@ -21,7 +23,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }                                     " languageserver
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
-
+Plug 'tpope/vim-surround'                   " For nice surrounding functionality
+Plug 'tpope/vim-repeat'                     " Repeat commands (.) also for plugins
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	   	            " nvim clang automation
@@ -29,10 +32,10 @@ Plug 'preservim/nerdcommenter'              " easy multiline commenting
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'sbdchd/neoformat'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 call plug#end()
-
+"---------------------------------------------------------------------------
 " Alternate map leader
 let mapleader = ','
 let g:mapleader = ','
@@ -50,12 +53,13 @@ autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
 let g:LanguageClient_serverCommands = {
   \ 'python': ['~/.local/bin/pyls'],
   \ 'cpp': ['/bin/ccls'],
+  \ 'c': ['/bin/ccls'],
   \ 'tex': ['~/.cargo/bin/texlab'], 
-  \ 'sh': ['bash-language-server', 'start']
   \ }
 
 " Lanugage client shortcuts
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 0
 set hidden
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
@@ -110,6 +114,9 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40 
 nmap <C-n> :NERDTreeToggle<CR>
 
+" Vim Surroundings
+nmap <silent> dsa ds}dF\
+
 " Window navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -136,6 +143,10 @@ noremap <Leader>P "+p
 " Show suggestions
 inoremap <C-Space> <C-N>
 
+
+" Use always latex filetype ( rather than plaintex, or ConTeXt)
+let g:tex_flavor='latex'
+
 " Deoplete suggestion navigation
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
@@ -153,12 +164,9 @@ vnoremap <Space> zf
 nmap <leader>cd :Deb<Space>
 nmap <leader>cr :Rel<Space>
 " Default separators
-nnoremap <leader>s i//---------------------------------------------------------------------------<ESC>
+" nnoremap <leader>s i//---------------------------------------------------------------------------<ESC>
 
-" Separators for LaTex
-autocmd FileType plaintex nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
-autocmd FileType tex nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
-autocmd FileType bib nnoremap<buffer> <leader>s i%---------------------------------------------------------------------------<ESC>
+autocmd FileType vim nnoremap<buffer> <leader>s i"---------------------------------------------------------------------------<ESC>
 
 " Commenting Plugin
 " Add spaces after comment delimiters by default
@@ -202,6 +210,8 @@ set spell spelllang=en_us   " enable spell checker and set default language to e
 "
 " set colorscheme here
 colorscheme gruvbox
+set cursorline
+" hi Search ctermfg=white
 
 " Remember folds when closing files
 augroup remember_folds
@@ -218,4 +228,5 @@ augroup HiglightTodo
     autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', '\(FIXME\|fixme\).*', 'fixme' -1)
 augroup END
 
+filetype on
 filetype plugin on

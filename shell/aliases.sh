@@ -45,7 +45,9 @@ alias o='okular'
 alias c='clear'
 alias copy='xclip -sel clip'
 alias stoplistener='killgrep "python3 /usr/bin/listener"'
+alias p2='python2'
+alias p3='python3'
 
-# Play music to get happy again
+# Play some music
 alias getlucky='vlc ~/Videos/getlucky.mp4 --start-time=190'
 alias wtf='vlc ~/Videos/wtf.mp4'

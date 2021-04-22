@@ -55,6 +55,8 @@ let g:LanguageClient_serverCommands = {
   \ 'cpp': ['/bin/ccls'],
   \ 'c': ['/bin/ccls'],
   \ 'tex': ['~/.cargo/bin/texlab'], 
+  \ 'plaintex': ['~/.cargo/bin/texlab'],
+  \ 'sh': ['bash-language-server', 'start']
   \ }
 
 " Lanugage client shortcuts
@@ -142,7 +144,6 @@ noremap <Leader>P "+p
 
 " Show suggestions
 inoremap <C-Space> <C-N>
-
 
 " Use always latex filetype ( rather than plaintex, or ConTeXt)
 let g:tex_flavor='latex'

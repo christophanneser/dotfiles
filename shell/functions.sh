@@ -25,11 +25,11 @@ function extract() {
 }
 
 # Find fat
-function find-fat-things() {
+function findFatThings() {
     du -ahx / | sort -rh | head -100
 }
 
-function pretty_csv {
+function prettyCsv {
     column -t -s, -n "$@" | less -F -S -X -K
 }
 
@@ -41,4 +41,10 @@ function swap()
 
 function killgrep() {
     kill $(ps aux | grep $1 | awk "{print $2}")
+}
+
+# run profiling with perf for given command
+function runProfiled() {
+    perf record --freq=997 --call-graph dwarf -q -o ./perf.data $1
+
 }

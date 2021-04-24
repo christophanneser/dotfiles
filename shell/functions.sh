@@ -43,8 +43,6 @@ function killgrep() {
     kill $(ps aux | grep $1 | awk "{print $2}")
 }
 
-# run profiling with perf for given command
-function runProfiled() {
-    perf record --freq=997 --call-graph dwarf -q -o ./perf.data $1
-
+function allowPerf() {
+    sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 }

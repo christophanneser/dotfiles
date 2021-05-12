@@ -8,6 +8,7 @@ CCLS_REPO_DIR := ~/.ccls/repo
 CCLS_BUILD_DIR := ~/.ccls/build
 CCLS_INSTALL_PREFIX := ~/.local
 LLVM_PREFIX_PATH := /usr/lib/llvm-9/lib/cmake
+RUST_ANALYZER_VERSION := 2021-04-26
 #---------------------------------------------------------------------------
 install-nerd-fonts:
 	# nerd fonts are used for displaying icons in NeoMutt
@@ -73,6 +74,12 @@ install-lldebugger:
 	@sudo ln -s /usr/bin/lldb-server-8 /usr/bin/lldb-server-8.0.0
 #---------------------------------------------------------------------------
 # Language Servers
+#---------------------------------------------------------------------------
+install-ls-rs:
+	rustup component add rust-src rustfmt && \
+	mkdir -p ~/.local/bin/ && \
+	curl -L -o ~/.local/bin/rust-analyzer https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-linux && \
+	chmod +x ~/.local/bin/rust-analyzer
 #---------------------------------------------------------------------------
 install-ls-cc: # C++
 	@sudo apt install ccls # alternatively build from sources: https://github.com/MaskRay/ccls

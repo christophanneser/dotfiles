@@ -34,6 +34,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
+Plug 'rust-lang/rust.vim'                   " rustfmt
 call plug#end()
 "---------------------------------------------------------------------------
 " Alternate map leader
@@ -51,12 +52,13 @@ autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
 " Language server config
 " Important: .compile_commands.json must be in root directory
 let g:LanguageClient_serverCommands = {
-  \ 'python': ['~/.local/bin/pyls'],
-  \ 'cpp': ['/bin/ccls'],
   \ 'c': ['/bin/ccls'],
-  \ 'tex': ['~/.cargo/bin/texlab'], 
+  \ 'cpp': ['/bin/ccls'],
   \ 'plaintex': ['~/.cargo/bin/texlab'],
-  \ 'sh': ['bash-language-server', 'start']
+  \ 'python': ['~/.local/bin/pyls'],
+  \ 'rust': ['rust-analyzer'],
+  \ 'sh': ['bash-language-server', 'start'],
+  \ 'tex': ['~/.cargo/bin/texlab']
   \ }
 
 " Lanugage client shortcuts

@@ -124,6 +124,7 @@ install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.vim
 	@ln -sf ${MAKEFILE_DIR}/vim/init.vim ~/.vimrc
 	@ln -sf ${MAKEFILE_DIR}/vim/idea.vim ~/.ideavimrc
+	@rm -rf ~/Templates && ln -sf ${MAKEFILE_DIR}/templates ~/Templates
 #---------------------------------------------------------------------------
 repair: reset-symlinks
 	@sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim.basic 200

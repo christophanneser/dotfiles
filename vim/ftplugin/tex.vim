@@ -3,7 +3,7 @@
 nnoremap <leader>s i%---------------------------------------------------------------------------<ESC>
 
 nnoremap <leader>m :w <bar> silent exec "!make"<CR>
-nnoremap <leader>p :silent exec "!pdflatex %"
+nnoremap <leader>p :w <bar> silent exec "!pdflatex %"<CR>
 
 " 98 -> b, 99 -> c, 100 -> d, 101 -> e, 105 -> i
 " find out mappings with :echo char2nr("c")

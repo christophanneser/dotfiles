@@ -1,6 +1,7 @@
 "---------------------------------------------------------------------------
 " Plugins
 "---------------------------------------------------------------------------
+if !exists("g:idea_vim") " enable plugins only if this is not ideavim
 call plug#begin()
 if has('nvim')                              " deoplete
     Plug 'Shougo/deoplete.nvim', {
@@ -27,27 +28,28 @@ Plug 'tpope/vim-surround'                   " For nice surrounding functionality
 Plug 'tpope/vim-repeat'                     " Repeat commands (.) also for plugins
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
-Plug 'justmao945/vim-clang'	   	            " nvim clang automation
+Plug 'justmao945/vim-clang'	  , {'for': 'rust'} 	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins', 'for': 'cpp'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
-Plug 'rust-lang/rust.vim'                   " rustfmt
+Plug 'rust-lang/rust.vim', {'for': 'rust'}                   " rustfmt
 call plug#end()
+endif
 "---------------------------------------------------------------------------
 " Alternate map leader
 let mapleader = ','
 let g:mapleader = ','
 
-"nvim-gdb
-nmap <M-b> :GdbBreakpointToggle<CR>
-autocmd VimEnter * nnoremap <leader>dd :GdbStart gdb<CR> <bar> i"test"
-
 " Cursor History
 "   - go to previous position: <C-O>
 "   - go to next position: <C-I>
+
+" Scrolling
+nnoremap <leader>d <C-d>
+nnoremap <leader>u <C-u>
 
 " Language server config
 " Important: .compile_commands.json must be in root directory

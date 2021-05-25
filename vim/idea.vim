@@ -1,7 +1,22 @@
 " include defaults from my actual vim config such as leader etc
+" but set variable to allow define which parts should be set for ideavim
+let g:idea_vim=1
 source ~/.config/nvim/config.vim
 
 " set bookmarks with Ctrl+Shift+Number and navigate using Ctrl+Number
+"---------------------------------------------------------------------------"
+" Specific IdeaVim Plugins (copy paste from here: https://gist.github.com/AlexPl292/50a3ff4cef1badcbb23436b22cbd3cf4)
+set surround
+"set multiple-cursors
+"set commentary
+"set argtextobj
+"set easymotion
+"set textobj-entire
+"set ReplaceWithRegister
+"set exchange
+" Trying the new syntax
+" Plug 'machakann/vim-highlightedyank'
+"---------------------------------------------------------------------------
 
 nmap <leader>ld :action GotoDeclaration<CR>
 nmap <leader>lc :action GotoClass<CR>

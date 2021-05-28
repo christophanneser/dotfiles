@@ -36,13 +36,18 @@ Plug 'sbdchd/neoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}                   " rustfmt
-Plug 'file://'.expand('~/.vim/vim/plugged/baseconverter')
+" Plug 'file://'.expand('~/.vim/vim/plugged/baseconverter')
 call plug#end()
 endif
 "---------------------------------------------------------------------------
 " Alternate map leader
 let mapleader = ','
 let g:mapleader = ','
+
+" Alternate saving with C-s
+noremap <silent> <C-S>  :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 
 " Cursor History
 "   - go to previous position: <C-O>
@@ -163,8 +168,8 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " New fast compilation commands
-:com -nargs=1 Deb :!mkdir -p debug & cd debug; cmake -DCMAKE_BUILD_TYPE=DEBUG ..; make <args>
-:com -nargs=1 Rel :!mkdir -p release & cd release; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
+" :com -nargs=1 Deb :!mkdir -p debug & cd debug; cmake -DCMAKE_BUILD_TYPE=DEBUG ..; make <args>
+" :com -nargs=1 Rel :!mkdir -p release & cd release; cmake -DCMAKE_BUILD_TYPE=RELEASE ..; make <args>
 
 " Trigger build using cmake
 nmap <leader>cd :Deb<Space>

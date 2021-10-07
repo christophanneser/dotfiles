@@ -5,12 +5,12 @@ if !exists("g:idea_vim") " enable plugins only if this is not ideavim
 call plug#begin()
 if has('nvim')                              " deoplete
     Plug 'Shougo/deoplete.nvim', {
-        \ 'commit': '02e48af3b995579a56ecafcda80fc6993ec4b3cf',
+        \ 'commit': '18788fc822abd1ac1ffc1a8189afbfae15d06cf9',
         \ 'do': ':UpdateRemotePlugins',
         \ }
 else
     Plug 'Shougo/deoplete.nvim', {
-        \ 'commit': '02e48af3b995579a56ecafcda80fc6993ec4b3cf',
+        \ 'commit': '18788fc822abd1ac1ffc1a8189afbfae15d06cf9',
         \ 'do': ':UpdateRemotePlugins',
         \ }
     Plug 'roxma/nvim-yarp'
@@ -48,6 +48,7 @@ let g:mapleader = ','
 noremap <silent> <C-S>  :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
+" Faster save and exit with :x (does not write if there were no changes)
 
 " Cursor History
 "   - go to previous position: <C-O>

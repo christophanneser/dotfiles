@@ -81,6 +81,9 @@ install-ls-rs:
 	curl -L -o ~/.local/bin/rust-analyzer https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-linux && \
 	chmod +x ~/.local/bin/rust-analyzer
 #---------------------------------------------------------------------------
+	# todo: vim-script
+# git@github.com:google/vimscript-language-server.git
+#---------------------------------------------------------------------------
 install-ls-cc: # C++
 	@sudo apt install ccls # alternatively build from sources: https://github.com/MaskRay/ccls
 #---------------------------------------------------------------------------
@@ -90,6 +93,9 @@ install-ls-py: # Python
 #---------------------------------------------------------------------------
 install-ls-tex: # TeX
 	cargo install --git https://github.com/latex-lsp/texlab.git
+#---------------------------------------------------------------------------
+install-ls-ts: # typescript
+	npm i -g typescript-language-server
 #---------------------------------------------------------------------------
 install-shell-translator: # Shell translator using Google Translate CLI
 	@cd ~/Documents; \
@@ -124,6 +130,7 @@ install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/vim ~/.vim
 	@ln -sf ${MAKEFILE_DIR}/vim/init.vim ~/.vimrc
 	@ln -sf ${MAKEFILE_DIR}/vim/idea.vim ~/.ideavimrc
+	@ln -sf ${MAKEFILE_DIR}/i3/config ~/.config/i3/config
 	@rm -rf ~/Templates && ln -sf ${MAKEFILE_DIR}/templates ~/Templates
 #---------------------------------------------------------------------------
 repair: reset-symlinks

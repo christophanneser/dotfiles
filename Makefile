@@ -132,6 +132,8 @@ install-symlinks: reset-symlinks
 	@ln -sf ${MAKEFILE_DIR}/vim/idea.vim ~/.ideavimrc
 	@ln -sf ${MAKEFILE_DIR}/i3/config ~/.config/i3/config
 	@ln -sf ${MAKEFILE_DIR}/i3/setup_screens_home_office.sh ~/setup_screens.sh
+	@ln -sf ${MAKEFILE_DIR}/polybar/config ~/.config/polybar/config
+	@ln -sf ${MAKEFILE_DIR}/polybar/launch.sh ~/.config/polybar/launch.sh
 	@rm -rf ~/Templates && ln -sf ${MAKEFILE_DIR}/templates ~/Templates
 #---------------------------------------------------------------------------
 repair: reset-symlinks

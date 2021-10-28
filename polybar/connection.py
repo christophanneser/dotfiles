@@ -18,7 +18,7 @@ with urllib.request.urlopen(url) as request:
         departure_time = departure + timedelta(hours=2)
         until_departure = departure_time - datetime.fromtimestamp(time.time())
         until_departure_mins = until_departure.seconds // 60
-        result.append(str(until_departure_mins))
-        #  print(departure_time.strftime('%H:%M'))
+        if until_departure_mins < 100:
+            result.append(until_departure_mins)
 
-    print('train in ' + ', '.join(result[:3]) + ' min')
+    print('Take U6 inbound in ' + ', '.join(map(str, list(sorted(result)[:4]))) + ' min')

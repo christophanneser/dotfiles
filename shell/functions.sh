@@ -46,3 +46,7 @@ function killgrep() {
 function allowPerf() {
     sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 }
+
+function dockerGetBash() {
+ docker exec -it $1 /bin/bash
+}

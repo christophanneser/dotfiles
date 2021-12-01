@@ -47,3 +47,10 @@ alias copy='xclip -sel clip'
 alias p2='python2'
 alias p3='python3'
 alias n='nautilus'
+
+#---------------------------------------------------------------------------
+# Docker aliases
+#---------------------------------------------------------------------------
+alias dcl='docker container ls'
+alias dcla='docker container ls -a'
+

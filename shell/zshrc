@@ -70,3 +70,4 @@ source $SHELLCONF/remotes.sh
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$HOME/.config/rofi/bin:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+alias parquet-tools='python3 ~/.local/lib/python3.9/site-packages/parquet_tools/cli.py'

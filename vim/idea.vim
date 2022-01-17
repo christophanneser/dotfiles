@@ -7,7 +7,8 @@ source ~/.config/nvim/config.vim
 "---------------------------------------------------------------------------"
 " Specific IdeaVim Plugins (copy paste from here: https://gist.github.com/AlexPl292/50a3ff4cef1badcbb23436b22cbd3cf4)
 set surround
-"set multiple-cursors
+set multiple-cursors
+set NERDTree
 "set commentary
 "set argtextobj
 "set easymotion
@@ -17,7 +18,6 @@ set surround
 " Trying the new syntax
 " Plug 'machakann/vim-highlightedyank'
 "---------------------------------------------------------------------------
-
 nmap <leader>ld :action GotoDeclaration<CR>
 nmap <leader>lc :action GotoClass<CR>
 nmap <leader>cc :action CommentByLineComment<CR>

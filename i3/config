@@ -9,20 +9,49 @@
 exec_always --no-startup-id ~/setup_screens.sh
 
 # swap caps lock and escape
+#exec_always --no-startup-id /usr/bin/xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
+#exec_always --no-startup-id /usr/bin/xmodmap -e "keycode66 = Escape NoSymbol Escape"
+exec --no-startup-id /usr/bin/xmodmap -e "clear lock" #disable caps lock switch
+exec --no-startup-id /usr/bin/xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 exec_always --no-startup-id /usr/bin/xmodmap -e "clear lock" #disable caps lock switch
 exec_always --no-startup-id /usr/bin/xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
+exec "setxkbmap -layout us,de"
+exec "setxkbmap -option 'grp:esc'"
+
 exec_always --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # todo there is no CapsLock anymore, but actually, no one needs CapsLock anyways
+#
+# night light for munich
+exec_always --no-startup-id redshift -l 48.14:11.6 &
 
 ############################################################
 # Default Application Shortcuts
 ############################################################
 bindsym $mod+t exec thunderbird
-bindsym $mod+c exec google-chrome --password-store=gnome
+bindsym $mod+c exec chromium --password-store=gnome
 bindsym $mod+p exec keepassxc
-bindsym $mod+space exec kupfer
+bindsym $mod+n exec nautilus ~
 
+############################################################
+# Default Application Auto Start
+############################################################
+exec --no-startup-id i3-msg 'workspace 1:Web; exec chromium --password-store=gnome'
+exec --no-startup-id i3-msg 'workspace 7:Mail; exec thunderbird'
+
+exec --no-startup-id ./i3-battery-popup/i3-battery-popup -N
+for_window [title="Battery Warning"] sticky enable
+
+bindsym $mod+Shift+s exec "import png:- | xclip -selection clipboard -t image/png"
+# bindsym Print       exec flameshot full
+bindsym Print exec flameshot gui
+
+# launcher for programs
+bindsym $mod+space exec --no-startup-id ~/.config/rofi/launchers/misc/launcher.sh #rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/material/scripts/rofi/launcher.rasi
+# launcher for ssh
+# bindsym $mod+s exec rofi -no-config -no-lazy-grab -show ssh -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
+
+bindsym $mod+r exec i3-msg restart
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -191,10 +220,9 @@ mode "resize" {
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        # bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 

@@ -26,6 +26,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'tpope/vim-surround'                   " For nice surrounding functionality
 Plug 'tpope/vim-repeat'                     " Repeat commands (.) also for plugins
+Plug 'tpope/vim-abolish'                    " Convert between different cases -> snakecase to camelCase etc.
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
 Plug 'justmao945/vim-clang'	  , {'for': 'rust'} 	            " nvim clang automation
@@ -186,6 +187,7 @@ let g:NERDSpaceDelims = 2
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
 " Markdown Plugin
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1

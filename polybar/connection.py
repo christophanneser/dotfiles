@@ -13,12 +13,15 @@ with urllib.request.urlopen(url) as request:
 
     connections = data['connectionList']
     for connection in connections:
+        transport_type = connection['connectionPartList'][0]['product']
+        if transport_type != 'UBAHN':
+            continue
         departure_unix = connection['departure']
         departure = datetime.utcfromtimestamp(int(departure_unix) / 1000)
         departure_time = departure + timedelta(hours=2)
         until_departure = departure_time - datetime.fromtimestamp(time.time())
         until_departure_mins = until_departure.seconds // 60
-        if until_departure_mins < 100:
+        if until_departure_mins <= 60:
             result.append(until_departure_mins)
 
-    print('Take U6 inbound in ' + ', '.join(map(str, list(sorted(result)[:4]))) + ' min')
+    print('Take U6 inbound in ' + ', '.join(map(str, list(sorted(set(result))[:4]))) + ' min')

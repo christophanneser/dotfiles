@@ -68,3 +68,5 @@ source $SHELLCONF/remotes.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$HOME/.config/rofi/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64

@@ -10,6 +10,12 @@ CCLS_INSTALL_PREFIX := ~/.local
 LLVM_PREFIX_PATH := /usr/lib/llvm-9/lib/cmake
 RUST_ANALYZER_VERSION := 2021-04-26
 #---------------------------------------------------------------------------
+install-window-manager: # awesome window manager
+	@sudo apt-get install i3
+	# todo add polybar
+	@sudo apt-get install -y rofi
+	@pip3 install pywal
+#---------------------------------------------------------------------------
 install-nerd-fonts:
 	# nerd fonts are used for displaying icons in NeoMutt
 	@curl https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/\

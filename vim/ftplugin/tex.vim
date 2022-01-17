@@ -2,7 +2,7 @@
 " Line Separators
 nnoremap <leader>s i%---------------------------------------------------------------------------<ESC>
 
-nnoremap <leader>m :w <bar> silent exec "!make"<CR>
+nnoremap <leader>m :w <bar> silent exec "! ./compile.sh"<CR>
 nnoremap <leader>p :w <bar> silent exec "!pdflatex %"<CR>
 
 " 98 -> b, 99 -> c, 100 -> d, 101 -> e, 105 -> i

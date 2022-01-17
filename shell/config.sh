@@ -29,6 +29,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$NPM_PACKAGES/bin:$PATH
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
 include $SHELLCONF/aliases.sh
 include $SHELLCONF/functions.sh
 

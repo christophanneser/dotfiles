@@ -69,7 +69,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
-modules-center = time-boston time-munich
+modules-center = time-boston time-munich mvg
 modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth battery date powermenu
 
 tray-position = right
@@ -99,6 +99,11 @@ interval = 30
 type = custom/script
 exec = TZ=Europe/Berlin date +"Munich: %H:%M"
 interval = 30
+
+[module/mvg]
+type = custom/script
+exec = python3 /home/christoph/Documents/dotfiles/polybar/connection.py
+interval = 60
 
 [module/xwindow]
 type = internal/xwindow

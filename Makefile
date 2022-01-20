@@ -119,6 +119,13 @@ reset-symlinks: create-directories
 	@sh -c "[ ! -L ~/.vim ] || rm -r ~/.vim;"
 	@sh -c "[ ! -L ~/.vimrc ] || rm ~/.vimrc;"
 #---------------------------------------------------------------------------
+install-modern-bash-commands:
+	# https://zaiste.net/posts/shell-commands-rust/
+	@sudo apt install exa
+	@sudo apt install bat
+	@sudo ln -s /usr/bin/batcat ~/.local/bin/bat
+	# @sudo apt install fd
+#---------------------------------------------------------------------------
 install-utils:
 	@sudo cp utils/listener.py /bin/listener
 	@sudo chmod +x /bin/listener

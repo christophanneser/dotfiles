@@ -9,7 +9,20 @@ else
     colorflag="-G"
 fi
 
-alias ll='ls -lh $colorflag'
+
+#---------------------------------------------------------------------------
+# modern shell command replacements (check if installed for each)
+#---------------------------------------------------------------------------
+if ! command -v exa &> /dev/null
+then
+    alias ll='ls -lh $colorflag'
+else
+    alias l='exa --icons'
+    alias ll='exa -l --icons'
+fi
+
+alias cat='bat'
+
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h -c'

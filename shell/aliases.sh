@@ -21,7 +21,7 @@ else
     alias ll='exa -l --icons'
 fi
 
-alias cat='bat'
+alias cat='batcat'
 
 alias grep='grep --color=auto'
 alias df='df -h'

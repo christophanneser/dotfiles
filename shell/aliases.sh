@@ -19,6 +19,7 @@ then
 else
     alias l='exa --icons'
     alias ll='exa -l --icons'
+    alias llt='exa -l --icons --sort time'
 fi
 
 alias cat='batcat'

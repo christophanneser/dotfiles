@@ -7,21 +7,14 @@
 
 # i3 config file (v4)
 exec_always --no-startup-id ~/setup_screens.sh
+exec_always --no-startup-id ~/setup_sound.sh
 
-# swap caps lock and escape
-#exec_always --no-startup-id /usr/bin/xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
-#exec_always --no-startup-id /usr/bin/xmodmap -e "keycode66 = Escape NoSymbol Escape"
-exec --no-startup-id /usr/bin/xmodmap -e "clear lock" #disable caps lock switch
-exec --no-startup-id /usr/bin/xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
-exec_always --no-startup-id /usr/bin/xmodmap -e "clear lock" #disable caps lock switch
-exec_always --no-startup-id /usr/bin/xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+# keyboard layout
+exec_always "setxkbmap -layout us_de -option caps:escape"
 
-exec "setxkbmap -layout us,de"
-exec "setxkbmap -option 'grp:esc'"
+# exec_always "setxkbmap -option 'grp:esc'"
 
 exec_always --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-# todo there is no CapsLock anymore, but actually, no one needs CapsLock anyways
-#
 # night light for munich
 exec_always --no-startup-id redshift -l 48.14:11.6 &
 

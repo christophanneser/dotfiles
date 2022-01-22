@@ -37,6 +37,7 @@ Plug 'sbdchd/neoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}                   " rustfmt
+Plug 'mechatroner/rainbow_csv'
 " Plug 'file://'.expand('~/.vim/vim/plugged/baseconverter')
 call plug#end()
 endif

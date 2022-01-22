@@ -44,6 +44,7 @@ nmap <leader>ll :action Forward<CR>
 
 " open run config window
 nmap <leader>er :action editRunConfigurations<CR>
+nmap <leader>sr :action ChooseRunConfiguration<CR>
 
 " tab navigation
 map <silent> <F5> :action PreviousTab<CR>

@@ -39,6 +39,10 @@ bindsym $mod+Shift+s exec "import png:- | xclip -selection clipboard -t image/pn
 # bindsym Print       exec flameshot full
 bindsym Print exec flameshot gui
 
+# move focused workspace between monitors
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
+
 # launcher for programs
 bindsym $mod+space exec --no-startup-id ~/.config/rofi/launchers/misc/launcher.sh #rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/material/scripts/rofi/launcher.rasi
 # launcher for ssh

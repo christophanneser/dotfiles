@@ -66,6 +66,12 @@ nnoremap <leader>wv  :vsplit<CR>
 nnoremap <leader>w< :action IncrementWindowWidth<CR>
 nnoremap <leader>w> :action DecrementWindowWidth<CR>
 
+nnoremap <C-Space> :action CollapseRegion<CR>
+nnoremap <C-E> :action ExpandRegion<CR>
+
+" Line Separators
+nnoremap <leader>s i//---------------------------------------------------------------------------<ESC>
+
 " Vim settings
 set ignorecase             " case insensitive searching
 set smartcase              " case-sensitive if expresson contains a capital letter

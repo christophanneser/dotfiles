@@ -199,6 +199,8 @@ let g:mkdp_command_for_global = 0
 " let g:airline#extensions#bufferline#enabled = 1
 let g:airline_extensions = ['tabline', 'bufferline']
 
+com! FormatJSON %!python -m json.tool
+
 " Create symlink to compile_commands
 "nmap <leader>ln :!ln -s debug/compile_commands.json compile_commands.json
 

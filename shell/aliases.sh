@@ -22,11 +22,12 @@ else
     alias llt='exa -l --icons --sort time'
 fi
 
-alias cat='batcat'
+alias bcat='batcat'
 
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h -c'
+alias update='sudo apt update && sudo apt upgrade'
 
 #---------------------------------------------------------------------------
 # git aliases
@@ -57,10 +58,14 @@ alias asan='cmake -DCMAKE_BUILD_TYPE=ASAN ..'
 alias v='nvim'
 alias o='okular'
 alias c='clear'
+alias m='make'
 alias copy='xclip -sel clip'
 alias p2='python2'
 alias p3='python3'
 alias n='nautilus'
+alias gc='gcalcli' # google calendar cli
+alias gcw='gcalcli calw' # google calendar cli
+
 
 #---------------------------------------------------------------------------
 # Docker aliases

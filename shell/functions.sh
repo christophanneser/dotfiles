@@ -50,3 +50,7 @@ function allowPerf() {
 function dockerGetBash() {
  docker exec -it $1 /bin/bash
 }
+
+function archive() {
+    mv $1 $1-$(date +%F)
+}

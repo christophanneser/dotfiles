@@ -9,7 +9,6 @@ else
     colorflag="-G"
 fi
 
-
 #---------------------------------------------------------------------------
 # modern shell command replacements (check if installed for each)
 #---------------------------------------------------------------------------
@@ -27,11 +26,13 @@ alias bcat='batcat'
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h -c'
-alias update='sudo apt update && sudo apt upgrade'
+alias dus='du -hs * | sort -h'
+alias update='sudo apt update && sudo apt upgrade -y'
 
 #---------------------------------------------------------------------------
 # git aliases
 #---------------------------------------------------------------------------
+alias gap='git add -p'
 alias gs='git status --untracked-files=no'
 alias gsu='git status --untracked-files=normal'
 alias gd='git diff'
@@ -49,10 +50,10 @@ alias cdgr='cd $(git rev-parse --show-toplevel)' # cd to current git root direct
 #---------------------------------------------------------------------------
 # Cmake aliases
 #---------------------------------------------------------------------------
-alias deb='cmake -DCMAKE_BUILD_TYPE=DEBUG ..'
-alias rel='cmake -DCMAKE_BUILD_TYPE=RELEASE ..'
-alias reldeb='cmake -DCMAKE_BUILD_TYPE=RELWITHDEBINFO ..'
-alias asan='cmake -DCMAKE_BUILD_TYPE=ASAN ..'
+alias deb='cmake -GNinja -DCMAKE_BUILD_TYPE=DEBUG ..'
+alias rel='cmake -GNinja -DCMAKE_BUILD_TYPE=RELEASE ..'
+alias reldeb='cmake -GNinja -DCMAKE_BUILD_TYPE=RELWITHDEBINFO ..'
+alias asan='cmake -GNinja -DCMAKE_BUILD_TYPE=ASAN ..'
 
 # Oftenly used programs aliases
 alias v='nvim'
@@ -65,11 +66,12 @@ alias p3='python3'
 alias n='nautilus'
 alias gc='gcalcli' # google calendar cli
 alias gcw='gcalcli calw' # google calendar cli
-
+alias todos='nvim ~/todos.txt'
 
 #---------------------------------------------------------------------------
 # Docker aliases
 #---------------------------------------------------------------------------
+alias dps='docker ps'
 alias dcl='docker container ls'
 alias dcla='docker container ls -a'
 

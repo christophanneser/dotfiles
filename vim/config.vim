@@ -23,6 +23,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }                                     " languageserver
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'bling/vim-bufferline'
 Plug 'tpope/vim-surround'                   " For nice surrounding functionality
 Plug 'tpope/vim-repeat'                     " Repeat commands (.) also for plugins
@@ -36,8 +38,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search
 Plug 'junegunn/fzf.vim'
-Plug 'rust-lang/rust.vim', {'for': 'rust'}                   " rustfmt
+Plug 'rust-lang/rust.vim', {'for': 'rust'}  " rustfmt
 Plug 'mechatroner/rainbow_csv'
+Plug 'rhysd/vim-grammarous'                 " Grammar checker
+Plug 'tpope/vim-fugitive'                   " Git integration
 " Plug 'file://'.expand('~/.vim/vim/plugged/baseconverter')
 call plug#end()
 endif
@@ -114,6 +118,7 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>g :GFiles<CR>
 nnoremap <silent> <leader>l :BLines<CR>
+nnoremap <silent> <leader>rg :Rg<CR>
 
 " NVIM Internal Spell Checker
 :setlocal spell spelllang=en_us
@@ -146,6 +151,9 @@ nnoremap <leader>w- :exe "resize " . (winheight(0) * 8/10)<CR>
 nnoremap <leader>wv  :vsplit<CR>
 nnoremap <leader>w< :exe "vertical resize " . (winwidth(0) * 12/10)<CR>
 nnoremap <leader>w> :exe "vertical resize " . (winwidth(0) * 8/10)<CR>
+
+
+map <silent> <F4> :!cd ~/bao-paper && ./compile.sh<CR>
 
 "Buffer navigation
 map <silent> <F5> :bp!<CR>
@@ -197,7 +205,9 @@ let g:mkdp_command_for_global = 0
 
 " Airline buffers at top
 " let g:airline#extensions#bufferline#enabled = 1
-let g:airline_extensions = ['tabline', 'bufferline']
+let g:airline_extensions = ['tabline', 'bufferline', 'branch', 'clock']
+" Enable arrows and special fonts used by airline
+let g:airline_powerline_fonts = 1
 
 com! FormatJSON %!python -m json.tool
 
@@ -240,9 +250,11 @@ augroup END
 " highlight todos
 augroup HiglightTodo
     autocmd!
-    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxRedBold', '\(TODO\|todo\|ToDo\|Todo\|toDo\).*', 'todo' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxRedBold', '\(TODO\|todo\|ToDo\|Todo\|toDo\|[todo\).*', 'todo' -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxBlueBold', '\(\~\~\).*', 'todo' -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('airline_error_bold', '\(FIXME\|fixme\).*', 'fixme' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxGreenBold', '\(DONE\|done\|[done\).*', 'done' -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('GruvboxOrangeBold', '\(in progress\|[in progress\).*', 'in progress' -1)
 augroup END
 
 filetype on

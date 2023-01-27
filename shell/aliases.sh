@@ -27,11 +27,12 @@ alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h -c'
 alias dus='du -hs * | sort -h'
-alias update='sudo apt update && sudo apt upgrade -y'
+alias update='sudo apt update -y && sudo apt upgrade -y'
 
 #---------------------------------------------------------------------------
 # git aliases
 #---------------------------------------------------------------------------
+alias ga='git add'
 alias gap='git add -p'
 alias gs='git status --untracked-files=no'
 alias gsu='git status --untracked-files=normal'

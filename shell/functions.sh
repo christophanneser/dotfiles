@@ -54,3 +54,13 @@ function dockerGetBash() {
 function archive() {
     mv $1 $1-$(date +%F)
 }
+
+function zshaddhistory() {
+    print -sr "${1%%$'\n'}"
+    fc -p
+    [[ $1 =~ ^cd.* ]] && dirs -c && echo $(dirs) >> ${PWDHISTFILE}
+}
+
+function lsd() {
+    eval $(cat ${PWDHISTFILE} | fzf +s)
+}

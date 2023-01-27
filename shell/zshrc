@@ -1,31 +1,35 @@
+
 include () {
     [[ -f "$1" ]] && source "$1"
 }
+
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+ZSH_THEME="agnoster"
 export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 export DOTFILES=$HOME/Documents/dotfiles
 export SHELLCONF=$DOTFILES/shell
 export HISTFILE=$HOME/.bash_history
 export DEFAULT_USER=$(whoami)
+export PWDHISTFILE=$HOME/.bash_pwd_history
 
-ZSH_THEME="agnoster"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 prompt_time() {
    prompt_segment black blue '[%D{%H:%M:%S}]'
 }
 
-TMOUT=1
+# TMOUT=1
 
 TRAPALRM() {
     zle reset-prompt
@@ -37,7 +41,7 @@ build_prompt() {
   prompt_virtualenv
   prompt_context
   prompt_dir
-  prompt_git
+  # prompt_git
   prompt_end
 }
 
@@ -63,11 +67,19 @@ fi
 
 # aliases
 include $SHELLCONF/aliases.sh
+source $SHELLCONF/aliases.sh
 source $SHELLCONF/functions.sh
 source $SHELLCONF/remotes.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/Downloads/julia-1.8.3/bin"
 export PATH=$HOME/.config/rofi/bin:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 alias parquet-tools='python3 ~/.local/lib/python3.9/site-packages/parquet_tools/cli.py'
+
+# WebAssembly
+export EMSDK_QUIET=1
+source "/mnt/hugespace/emsdk/emsdk_env.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -132,3 +132,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+HISTTIMEFORMAT="%F %T "
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

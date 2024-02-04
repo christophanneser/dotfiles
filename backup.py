@@ -96,7 +96,7 @@ class BackupDevice:
 
     def backup(self, source: str):
         self._prepare_device_for_backup()
-        os.system(f'rsync -r {source} {self.get_dest()}')
+        os.system(f'rsync -r --copy-links {source} {self.get_dest()}')
 
     def get_dest(self) -> str:
         return self.mount_point + '/' + self.path

@@ -70,7 +70,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
-modules-center = time-west-coast time-east-coast time-munich update
+modules-center = time-boston time-munich
 modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth battery date powermenu
 
 tray-position = right
@@ -113,7 +113,7 @@ interval = 60
 
 [module/mvg]
 type = custom/script
-exec = python3 /home/christoph/Documents/dotfiles/polybar/connection.py
+exec = python3 /home/anneser/Documents/dotfiles/polybar/connection.py
 interval = 60
 
 [module/update]

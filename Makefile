@@ -112,6 +112,9 @@ install-shell-translator: # Shell translator using Google Translate CLI
 install-clang-tools:
 	@sudo apt-get install clang-tools
 #---------------------------------------------------------------------------
+install-keyboard-layout:
+	@sudo cp xkb/us_de /usr/share/X11/xkb/symbols
+#---------------------------------------------------------------------------
 reset-symlinks: create-directories
 	@sh -c "[ ! -L ~/.bashrc ] || rm ~/.bashrc;"
 	@sh -c "[ ! -L ~/.config/nvim ] || rm -r ~/.config/nvim;"

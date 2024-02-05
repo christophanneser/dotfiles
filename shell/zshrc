@@ -21,15 +21,13 @@ export PWDHISTFILE=$HOME/.bash_pwd_history
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(zsh-fzf-history-search)
 
 # source $ZSH/oh-my-zsh.sh
 
 prompt_time() {
    prompt_segment black blue '[%D{%H:%M:%S}]'
 }
-
-# TMOUT=1
 
 TRAPALRM() {
     zle reset-prompt
@@ -77,9 +75,5 @@ export PATH="$PATH:$HOME/Downloads/julia-1.8.3/bin"
 export PATH=$HOME/.config/rofi/bin:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 alias parquet-tools='python3 ~/.local/lib/python3.9/site-packages/parquet_tools/cli.py'
-
-# WebAssembly
-export EMSDK_QUIET=1
-source "/mnt/hugespace/emsdk/emsdk_env.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

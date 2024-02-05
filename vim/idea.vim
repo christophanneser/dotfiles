@@ -33,7 +33,7 @@ nmap <leader>-- :action EditorDecreaseFontSize<CR>
 
 nmap <leader>dd :action Debug<CR>
 nmap <leader>B :action ToggleLineBreakpoint<CR>
-nmap <leader>bb :action BuildArtifact<CR>
+nmap <leader>bb :action BuildMenu<CR>
 nmap <leader>rr :action Run<CR>
 nmap <leader>ot :action ActivateTerminalToolWindow<CR>
 

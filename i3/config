@@ -8,6 +8,7 @@
 # i3 config file (v4)
 exec_always --no-startup-id ~/setup_screens.sh
 exec_always --no-startup-id ~/setup_sound.sh
+exec_alwyas --no-startup-id setxkbmap -layout us_de -option caps:escape
 
 # keyboard layout
 exec_always "setxkbmap -layout us_de -option caps:escape"
@@ -44,7 +45,7 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left move workspace to output left
 
 # launcher for programs
-bindsym $mod+space exec --no-startup-id ~/.config/rofi/launchers/misc/launcher.sh #rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/material/scripts/rofi/launcher.rasi
+bindsym $mod+space exec --no-startup-id rofi -show run #rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/material/scripts/rofi/launcher.rasi
 # launcher for ssh
 # bindsym $mod+s exec rofi -no-config -no-lazy-grab -show ssh -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
 

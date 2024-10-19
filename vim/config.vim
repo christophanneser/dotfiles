@@ -31,6 +31,7 @@ Plug 'tpope/vim-repeat'                     " Repeat commands (.) also for plugi
 Plug 'tpope/vim-abolish'                    " Convert between different cases -> snakecase to camelCase etc.
 Plug 'scrooloose/nerdtree'                  " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin'	        " NERDTree git plugin
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'justmao945/vim-clang'	  , {'for': 'rust'} 	            " nvim clang automation
 Plug 'preservim/nerdcommenter'              " easy multiline commenting
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins', 'for': 'cpp'}
@@ -42,6 +43,10 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}  " rustfmt
 Plug 'mechatroner/rainbow_csv'
 Plug 'rhysd/vim-grammarous'                 " Grammar checker
 Plug 'tpope/vim-fugitive'                   " Git integration
+" Different color-schemes:
+Plug 'sainnhe/edge'
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/gruvbox-material'
 " Plug 'file://'.expand('~/.vim/vim/plugged/baseconverter')
 call plug#end()
 endif
@@ -104,6 +109,18 @@ let g:deoplete#enable_at_startup = 1
 "nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+
+" The configuration options should be placed before `colorscheme edge`.
+let g:sonokai_style = 'andromeda'
+let g:sonokai_better_performance = 1
+
+" colorscheme sonokai
+colorscheme gruvbox-material
+"
 " Clang-Format
 " let g:clang_format#auto_format = 1
 " let g:clang_format#detect_style_file = 1
@@ -236,8 +253,6 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set guifont=Monaco:h20
 set spell spelllang=en_us   " enable spell checker and set default language to english
 "
-" set colorscheme here
-colorscheme gruvbox
 set cursorline
 " hi Search ctermfg=white
 
@@ -260,3 +275,51 @@ augroup END
 
 filetype on
 filetype plugin on
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (or "all")
+  ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+-- Custom highlight settings
+vim.api.nvim_set_hl(0, "@keyword", { fg = "#fabd2f", bold = true })
+vim.api.nvim_set_hl(0, "@function", { fg = "#b8bb26", italic = true })
+vim.api.nvim_set_hl(0, "@comment", { fg = "#928374", italic = true })
+EOF

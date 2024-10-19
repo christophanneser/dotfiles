@@ -19,7 +19,7 @@ endif
 Plug 'zchee/deoplete-jedi'                  " auto-completion for python
 Plug 'lervag/vimtex'                        " auto-completion for vimtex
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'commit': 'ec4af74',
+    \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }                                     " languageserver
 Plug 'vim-airline/vim-airline'
@@ -50,6 +50,7 @@ endif
 let mapleader = ','
 let g:mapleader = ','
 
+
 " Alternate saving with C-s
 noremap <silent> <C-S>  :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
@@ -78,7 +79,7 @@ let g:LanguageClient_serverCommands = {
 
 " Lanugage client shortcuts
 let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 1
 set hidden
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
